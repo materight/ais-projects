@@ -24,7 +24,8 @@ public class App{
 
         double bestFitness = Individual.SIZE;
         int bestFitnessGeneration = 0;
-        for(int generation = 0; generation < numberOfGenerations + 1; generation++){
+        int generation = 0;
+        for(generation = 0; generation < numberOfGenerations + 1; generation++){
             // Compute and sort by fitness value (lower fitness ==)
             for(Individual i : individuals) i.computeFitness();
             individuals.sort(Comparator.comparing(Individual::getFitness));
@@ -60,7 +61,7 @@ public class App{
         }
 
         Individual best = individuals.get(0);
-        System.out.println("\n\nBEST FITNESS: " + best.getFitness() + "\n");
+        System.out.println("\n\nBEST FITNESS: " + best.getFitness() + ", GEN: #" + (generation - 1) + " \n");
         System.out.println(best);
     }
 
