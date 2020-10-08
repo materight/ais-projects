@@ -26,11 +26,14 @@ public class App{
         int bestFitnessGeneration = 0;
         for(int generation = 0; generation < numberOfGenerations + 1; generation++){
             // Compute and sort by fitness value (lower fitness ==)
-            for(Individual i : individuals)i.computeFitness();
+            for(Individual i : individuals) i.computeFitness();
             individuals.sort(Comparator.comparing(Individual::getFitness));
 
             Individual best = individuals.get(0);
             System.out.println("Gen #" + generation + " best: " + (best.getFitness()));
+             
+            // If a individual with fitness = 0 is found, stop because we found a solution
+            if(best.getFitness() == 0) break;
             
             // If there are no advancements, restart with a new random population 
             if(best.getFitness() >= bestFitness && generation - bestFitnessGeneration > 200){ 
