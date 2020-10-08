@@ -15,8 +15,7 @@ public class Individual{
     // Random initialized
     public Individual(){
         // Random permutations of values [1, ..., 9] for each row
-        ArrayList<Integer> values = new ArrayList<>();
-        for(int i =0; i<D; i++) values.add(i+1);
+        ArrayList<Integer> values = getCellValues();
 
         for(int i = 0; i < D; i++){
             Collections.shuffle(values);
@@ -32,8 +31,30 @@ public class Individual{
         for(int i = crossoverPoint; i < SIZE; i++) data[i] = p2.data[i];
     }
 
-    public void mutate(int position, int newValue){
+    public void mutateCell(int position, int newValue){
         data[position] = newValue;
+    }
+
+    public void mutateMisplacedCell(int newValue){
+        Random random = new Random();
+        computeFitness();
+        int misplacedIndex = random.nextInt(fitness.intValue()); 
+        int currentIndex = -1;
+        boolean[] misplaced = computeMisplaced();
+        for(int i = 0; i < D; i++){
+            for(int j = 0; j < D; j++){
+                if(misplaced[i * D + j]) currentIndex++;
+                if(currentIndex == misplacedIndex){ // Mutate selected cell
+                    data[i * D + j] = newValue;
+                    break;
+                }
+            }   
+        }
+    }
+
+    public void mutateRow(int row){
+        ArrayList<Integer> newValues = getCellValues();
+        for(int j = 0; j < D; j++) data[row * D + j] = newValues.get(j);
     }
 
     public void computeFitness(){
@@ -104,5 +125,13 @@ public class Individual{
             ret += ((i+1) % 3 == 0) ? "\n-----------------------\n" :"\n";
         }
         return ret;
+    }
+
+    // Return a random permutation of the possible values in a row 
+    static ArrayList<Integer> getCellValues(){
+        ArrayList<Integer> values = new ArrayList<>();
+        for(int i =0; i < D; i++) values.add(i + 1);
+        Collections.shuffle(values);
+        return values;
     }
 }

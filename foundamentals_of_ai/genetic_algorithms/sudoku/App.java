@@ -6,8 +6,8 @@ import java.util.Random;
 public class App{
 
     int numberOfGenerations = 2000; // Number iterations
-    int numberOfIndividuals = 100; // Number of individuals
-    int tournamentSize = 50; // Number of best individuals to be selected at each iteration
+    int numberOfIndividuals = 200; // Number of individuals
+    int tournamentSize = 8; // Number of best individuals to be selected at each iteration
     double mutationProbability = 0.5; // Probability of executing a mutation
 
     ArrayList<Individual> individuals;
@@ -76,8 +76,8 @@ public class App{
             // Select two random parents
             Individual p1 = parents.get(random.nextInt(parents.size()));
             Individual p2 = parents.get(random.nextInt(parents.size()));
-            // Select a random crossover point
-            int crossoverPoint = random.nextInt(Individual.SIZE);
+            // Select a random crossover point, i.e. a row (exluding row 0 and 8)
+            int crossoverPoint = (random.nextInt(Individual.D - 2) + 1) * Individual.D; // Or random.nextInt(Individual.SIZE); for a random point 
             // Execute crossover
             Individual newChild = new Individual(p1, p2, crossoverPoint);
             offsprings.add(newChild);
@@ -89,9 +89,9 @@ public class App{
         Random random = new Random();
         for(Individual individual : individuals){
             if(random.nextDouble() < mutationProbability){
-                int mutationPos = random.nextInt(Individual.SIZE);
-                int mutationValue = random.nextInt(Individual.D) + 1;
-                individual.mutate(mutationPos, mutationValue);
+                // individual.mutateRow(random.nextInt(Individual.D)); // Shuffle a row
+                // individual.mutateMisplacedCell(random.nextInt(Individual.D) + 1); // Mutate a misplaced cell
+                individual.mutateCell(random.nextInt(Individual.SIZE), random.nextInt(Individual.D) + 1); // Mutate a single cell
             }
         }
         return individuals;
