@@ -1,0 +1,345 @@
+Mon Nov  9 12:01:02 2020
+
+
+Moral links:
+
+    Marrying Burglar and Earthquake
+
+
+Triangulating prime component with 3 members:
+    Alarm, Earthquake, Burglar
+This component is a clique of cost 8
+
+
+Total cost of triangulation for all prime components is 8
+
+
+Elimination sequence:
+
+    Burglar
+    Earthquake
+    Alarm
+
+
+Cliques:
+
+Clique 1, 3 members, table size = 8:
+    Alarm, Earthquake, Burglar
+
+Total clique table size: 8
+
+
+The junction forest:
+
+Creating junction tree with clique 1 as root ...
+
+
+Assignment of potentials to cliques:
+
+    Node Alarm assigned to clique 1
+    Node Earthquake assigned to clique 1
+    Node Burglar assigned to clique 1
+
+
+Checking conditional probability potentials:
+
+Warning: Conditional distributions for Alarm sum to different values:
+    min = 1
+    max = 2
+
+    No errors found
+
+
+Beliefs for chance nodes:
+
+    Alarm:
+	Yes        0.613
+	No         0.387
+
+    Earthquake:
+	Yes        0.1
+	No         0.9
+
+    Burglar:
+	Yes        0.2
+	No         0.8
+Mon Nov  9 12:13:46 2020
+
+
+Moral links:
+
+    Marrying Burglar and Earthquake
+
+
+Triangulating prime component with 3 members:
+    Alarm, Earthquake, Burglar
+This component is a clique of cost 8
+
+
+Total cost of triangulation for all prime components is 8
+
+
+Elimination sequence:
+
+    Burglar
+    Earthquake
+    Alarm
+
+
+Cliques:
+
+Clique 1, 3 members, table size = 8:
+    Alarm, Earthquake, Burglar
+
+Total clique table size: 8
+
+
+The junction forest:
+
+Creating junction tree with clique 1 as root ...
+
+
+Assignment of potentials to cliques:
+
+    Node Alarm assigned to clique 1
+    Node Earthquake assigned to clique 1
+    Node Burglar assigned to clique 1
+
+
+Checking conditional probability potentials:
+
+Warning: Conditional distributions for Alarm sum to different values:
+    min = 1
+    max = 2
+
+    No errors found
+
+
+Beliefs for chance nodes:
+
+    Alarm:
+	Yes        0.646
+	No         0.354
+
+    Earthquake:
+	Yes        0.2
+	No         0.8
+
+    Burglar:
+	Yes        0.2
+	No         0.8
+Mon Nov  9 12:15:02 2020
+
+
+Moral links:
+
+    Marrying Burglar and Earthquake
+
+
+Triangulating prime component with 3 members:
+    Alarm, Earthquake, Burglar
+This component is a clique of cost 8
+
+
+Total cost of triangulation for all prime components is 8
+
+
+Elimination sequence:
+
+    Burglar
+    Earthquake
+    Alarm
+
+
+Cliques:
+
+Clique 1, 3 members, table size = 8:
+    Alarm, Earthquake, Burglar
+
+Total clique table size: 8
+
+
+The junction forest:
+
+Creating junction tree with clique 1 as root ...
+
+
+Assignment of potentials to cliques:
+
+    Node Alarm assigned to clique 1
+    Node Earthquake assigned to clique 1
+    Node Burglar assigned to clique 1
+
+
+Checking conditional probability potentials:
+
+    No errors found
+
+
+Beliefs for chance nodes:
+
+    Alarm:
+	Yes        0.39
+	No         0.61
+
+    Earthquake:
+	Yes        0.2
+	No         0.8
+
+    Burglar:
+	Yes        0.2
+	No         0.8
+Mon Nov  9 12:22:18 2020
+
+
+Moral links:
+
+    Marrying Burglar and Earthquake
+
+
+Triangulating prime component with 2 members:
+    Phone_call, Alarm
+This component is a clique of cost 4
+
+Triangulating prime component with 3 members:
+    Alarm, Earthquake, Burglar
+This component is a clique of cost 8
+
+
+Total cost of triangulation for all prime components is 12
+
+
+Elimination sequence:
+
+    Burglar
+    Earthquake
+    Phone_call
+    Alarm
+
+
+Cliques:
+
+Clique 2, 2 members, table size = 4:
+    Alarm, Phone_call
+
+Clique 1, 3 members, table size = 8:
+    Alarm, Earthquake, Burglar
+
+Total clique table size: 12
+
+
+The junction forest:
+
+Creating junction tree with clique 2 as root ...
+
+Cliques 1 and 2 linked, separator has 1 member and table size = 2:
+    Alarm
+
+
+Assignment of potentials to cliques:
+
+    Node Phone_call assigned to clique 2
+    Node Alarm assigned to clique 1
+    Node Earthquake assigned to clique 1
+    Node Burglar assigned to clique 1
+
+
+Checking conditional probability potentials:
+
+    No errors found
+
+
+Beliefs for chance nodes:
+
+    Phone_call:
+	Yes        0.412
+	No         0.588
+
+    Alarm:
+	Yes        0.39
+	No         0.61
+
+    Earthquake:
+	Yes        0.2
+	No         0.8
+
+    Burglar:
+	Yes        0.2
+	No         0.8
+Mon Nov  9 12:24:24 2020
+
+
+Moral links:
+
+    Marrying Burglar and Earthquake
+
+
+Triangulating prime component with 2 members:
+    Phone_call, Alarm
+This component is a clique of cost 4
+
+Triangulating prime component with 3 members:
+    Alarm, Earthquake, Burglar
+This component is a clique of cost 8
+
+
+Total cost of triangulation for all prime components is 12
+
+
+Elimination sequence:
+
+    Burglar
+    Earthquake
+    Phone_call
+    Alarm
+
+
+Cliques:
+
+Clique 2, 2 members, table size = 4:
+    Alarm, Phone_call
+
+Clique 1, 3 members, table size = 8:
+    Alarm, Earthquake, Burglar
+
+Total clique table size: 12
+
+
+The junction forest:
+
+Creating junction tree with clique 2 as root ...
+
+Cliques 1 and 2 linked, separator has 1 member and table size = 2:
+    Alarm
+
+
+Assignment of potentials to cliques:
+
+    Node Phone_call assigned to clique 2
+    Node Alarm assigned to clique 1
+    Node Earthquake assigned to clique 1
+    Node Burglar assigned to clique 1
+
+
+Checking conditional probability potentials:
+
+    No errors found
+
+
+Beliefs for chance nodes:
+
+    Phone_call:
+	Yes        0.412
+	No         0.588
+
+    Alarm:
+	Yes        0.39
+	No         0.61
+
+    Earthquake:
+	Yes        0.2
+	No         0.8
+
+    Burglar:
+	Yes        0.2
+	No         0.8

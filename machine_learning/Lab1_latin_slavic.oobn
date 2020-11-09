@@ -1,0 +1,142 @@
+class Lab1_latin_slavic
+{
+    inputs = ();
+    outputs = ();
+    node_size = (80 40);
+    HR_TextLabel_IDs = "1,2,3,4,5,6,7,8";
+    HR_TextLabel_8_Size = "73,30";
+    HR_TextLabel_8_Position = "358,342";
+    HR_TextLabel_8_Description = "continuous";
+    HR_TextLabel_7_Size = "73,30";
+    HR_TextLabel_7_Position = "241,346";
+    HR_TextLabel_7_Description = "continuous";
+    HR_TextLabel_6_Size = "60,30";
+    HR_TextLabel_6_Position = "103,341";
+    HR_TextLabel_6_Description = "discrete";
+    HR_TextLabel_5_Size = "74,30";
+    HR_TextLabel_5_Position = "444,302";
+    HR_TextLabel_5_Description = "= features";
+    HR_TextLabel_4_Size = "60,30";
+    HR_TextLabel_4_Position = "301,147";
+    HR_TextLabel_4_Description = "= label";
+    HR_TextLabel_3_Size = "320,30";
+    HR_TextLabel_3_Position = "24,18";
+    HR_TextLabel_3_Description = "Xi: feature i,  Y: label";
+    HR_TextLabel_2_Size = "558,30";
+    HR_TextLabel_2_Position = "27,82";
+    HR_TextLabel_2_Description = "=> Y* = argmax P(X1 | Y) P(X2 | Y) ... P(Xm | Y) P(Y)      NAIVE BAYES: it's a reasonable approximation";
+    HR_TextLabel_1_Size = "543,30";
+    HR_TextLabel_1_Position = "23,48";
+    HR_TextLabel_1_Description = "P(Y | X1, ..., Xm) = [P(X1, ..., Xm | Y) P(Y)]  /  P(X1, .. ,Xm)  => Computationally expensive";
+    HR_DBN_Num_Slices = "5";
+    HR_Desc = "";
+    HR_OOBN_CheckConsistency = "1";
+    HR_OOBN_FitExpand = "1";
+    HR_Zoom_ZoomFactor = "100";
+    HR_Groups_GroupColors = "";
+    HR_Groups_GroupNames = "";
+    HR_Groups_UserGroupsNo = "0";
+    HR_Utility_Link = "63";
+    HR_Probabilistic_Link = "63";
+    HR_Functional_Link = "63";
+    HR_Binding_Link = "63";
+    HR_Information_Arc = "63";
+    HR_Color_Interface = "21";
+    HR_Color_Instance = "0";
+    HR_Color_DiscreteFunction = "5";
+    HR_Color_Function = "4";
+    HR_Color_Utility = "36";
+    HR_Color_Decision = "17";
+    HR_Color_ContinuousChance = "48";
+    HR_Color_DiscreteChance = "16";
+    HR_Monitor_InitSD = "2";
+    HR_Monitor_Utility_Arrange = "0";
+    HR_Monitor_Mean_Variance = "1";
+    HR_Monitor_Chance_Utility = "1";
+    HR_Monitor_InitStates = "5";
+    HR_Monitor_OpenGraph = "0";
+    HR_Monitor_GraphPrecision = "100";
+    HR_Monitor_AutoUpdGraph = "0";
+    HR_Compile_MaxMinimalSeparators = "100000";
+    HR_Compile_ApproxEpsilon = "1.0E-5";
+    HR_Compile_Approximate = "0";
+    HR_Compile_SaveToMemory = "0";
+    HR_Compile_Compress = "0";
+    HR_Compile_TriangMethod = "0";
+    HR_Propagate_AutoNormal = "1";
+    HR_Propagate_AutoSum = "1";
+    HR_Propagate_Auto = "1";
+    HR_Font_Italic = "0";
+    HR_Font_Weight = "400";
+    HR_Font_Size = "-12";
+    HR_Font_Name = "javax.swing.plaf.FontUIResource[family=Dialog,name=Dialog,style=bold,size=12]";
+    HR_Grid_GridShow = "0";
+    HR_Grid_GridSnap = "0";
+    HR_Grid_Y = "40";
+    HR_Grid_X = "40";
+
+    node Group
+    {
+	label = "";
+	position = (255 160);
+	states = ("Latin" "Slavic");
+	HR_LinkGroup = "[Color:0][Weight:0][Height:0]";
+	HR_LinkMode = "[Color:0][Weight:0][Height:0]";
+	HR_Group = "0";
+	HR_Desc = "";
+	HR_State_1 = "";
+	HR_State_0 = "";
+    }
+
+    continuous node Height
+    {
+	label = "";
+	position = (391 311);
+	HR_Group = "0";
+	HR_Desc = "";
+    }
+
+    continuous node Weight
+    {
+	label = "";
+	position = (266 315);
+	HR_Group = "0";
+	HR_Desc = "";
+    }
+
+    node Color
+    {
+	label = "Hair Color";
+	position = (130 316);
+	states = ("Blonde" "Black" "Brown");
+	HR_State_2 = "";
+	HR_Group = "0";
+	HR_Desc = "";
+	HR_State_1 = "";
+	HR_State_0 = "";
+    }
+
+    potential (Group)
+    {
+	data = ( 70 30 );
+	experience = 0;
+    }
+
+    potential (Height | Group)
+    {
+	data = ( normal ( 170, 20 )	%  Group=Latin
+		 normal ( 190, 20 ) );	%  Group=Slavic
+    }
+
+    potential (Weight | Group)
+    {
+	data = ( normal ( 70, 10 )	%  Group=Latin
+		 normal ( 80, 10 ) );	%  Group=Slavic
+    }
+
+    potential (Color | Group)
+    {
+	data = (( 10 60 30 )	%  Group=Latin
+		( 60 30 10 ));	%  Group=Slavic
+    }
+} % class Lab1_latin_slavic
