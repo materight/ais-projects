@@ -13,8 +13,8 @@ title('Original image');
     
 % Histogram Equalization
 f=histeq(f); 
-figure(2); imshow(uint8(f1)); title('Equalized image');
-figure(3); imhist(uint8(f1)); title('Histogram of equalized image');
+figure(2); imshow(uint8(f)); title('Equalized image');
+figure(3); imhist(uint8(f)); title('Histogram of equalized image');
 
 
 % Median Filter 3x3
