@@ -5,6 +5,9 @@
 ## MacOS
 .DS_Store
 
+## Python
+__pycache__
+
 ## Java
 .mtj.tmp/
 *.class
