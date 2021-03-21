@@ -1,11 +1,11 @@
 |    |   max_generations |   sigma |   pop_size |   num_offspring | strategy_mode   |   mixing_number | problem_class   |   best_fitness_rosenbrock |
 |----|-------------------|---------|------------|-----------------|-----------------|-----------------|-----------------|---------------------------|
-|  0 |               100 |       1 |         20 |              20 | None            |               5 | Rosenbrock      |                 106.363   |
-|  1 |               100 |       1 |         20 |             100 | None            |               5 | Rosenbrock      |                 143.639   |
-|  2 |               100 |       1 |         20 |             200 | None            |               5 | Rosenbrock      |                  29.4134  |
-|  3 |               100 |       1 |         20 |             100 | None            |               1 | Rosenbrock      |                 103.796   |
-|  4 |               100 |       1 |         20 |             100 | None            |               5 | Rosenbrock      |                 143.639   |
-|  5 |               100 |       1 |         20 |             100 | None            |              10 | Rosenbrock      |                  31.6761  |
+|  0 |               100 |       1 |         20 |             100 | None            |               1 | Rosenbrock      |                 103.796   |
+|  1 |               100 |       1 |         20 |             100 | Global          |               1 | Rosenbrock      |                   0.99526 |
+|  2 |               100 |       1 |         20 |             100 | Individual      |               1 | Rosenbrock      |                  52.1466  |
+|  3 |               100 |       1 |         20 |             100 | None            |               2 | Rosenbrock      |                  77.0228  |
+|  4 |               100 |       1 |         20 |             100 | Global          |               2 | Rosenbrock      |                   0.04377 |
+|  5 |               100 |       1 |         20 |             100 | Individual      |               2 | Rosenbrock      |                   1.00053 |
 |  6 |               100 |       1 |         20 |             100 | None            |               5 | Rosenbrock      |                 143.639   |
 |  7 |               100 |       1 |         20 |             100 | Global          |               5 | Rosenbrock      |                   0.24098 |
 |  8 |               100 |       1 |         20 |             100 | Individual      |               5 | Rosenbrock      |                   0.02684 |

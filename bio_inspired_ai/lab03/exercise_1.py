@@ -31,8 +31,8 @@ args["strategy_mode"] = None
 #args["strategy_mode"] = es.GLOBAL
 #args["strategy_mode"] = es.INDIVIDUAL
 
-#args["mixing_number"] = 1 #rho
-args["mixing_number"] = 5
+args["mixing_number"] = 1 #rho
+#args["mixing_number"] = 5
 
 #args["problem_class"] = benchmarks.Sphere
 args["problem_class"] = benchmarks.Rosenbrock
@@ -46,6 +46,8 @@ args["fig_title"] = 'ES'
 
 def run(args, show=True):
     
+    args["max_generations"] = 10000 // args["num_offspring"] 
+
     if len(sys.argv) > 1 :
         rng = NumpyRandomWrapper(int(sys.argv[1]))
     else :
@@ -68,9 +70,9 @@ def run(args, show=True):
     return {'best_fitness': best_fitness}
 
 run_benchmark(run, 'results/es1', args, {
-        'num_offspring': [20, 100, 200],
-        'mixing_number': [1, 5, 10],
+        'num_offspring': [100],
+        'mixing_number': [1, 2, 5],
         'strategy_mode': [None, es.GLOBAL, es.INDIVIDUAL]
     }, 
     problems=[benchmarks.Rosenbrock], # benchmarks.Sphere, benchmarks.Rastrigin 
-    combine=False)
+    combine=True)

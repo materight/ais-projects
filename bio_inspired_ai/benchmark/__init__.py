@@ -30,7 +30,8 @@ def run_benchmark(run_function, output_path, initial_args, custom_args, problems
         # Test problems
         for problem in problems:
             # Run function
-            ret = run_function({**args, 'problem_class': problem}, show=False)
+            args['problem_class'] = problem
+            ret = run_function(args, show=False)
             result = {**result, **{f'{k}_{problem.__name__.lower()}': v.round(ROUND_RESULTS) for k, v in ret.items()} }
             plt.tight_layout()
             plt.savefig(f'{output_path}/img{i}_{problem.__name__.lower()}.png', dpi=250)
