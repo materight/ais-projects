@@ -6,6 +6,9 @@ import cma_es
 import es
 from inspyred_utils import NumpyRandomWrapper
 
+sys.path.append('..')
+from benchmark import run_benchmark
+
 display = True # Plot initial and final populations
 
 """
@@ -14,10 +17,9 @@ Edit this part to do the exercises
 
 """
 
-num_vars = 10
-
 # parameters for CMA-ES
 args = {}
+args["num_vars"] = 10
 args["max_generations"] = 100
 args["sigma"] = 1.0 # default standard deviation
 
@@ -34,22 +36,35 @@ args["problem_class"] = benchmarks.Rosenbrock
 
 args["fig_title"] = 'CMA-ES'
 
-if __name__ == "__main__":
+def run(args, show=True):
     
+    args["max_generations"] = 10000 // args["num_offspring"] 
+
     if len(sys.argv) > 1 :
         rng = NumpyRandomWrapper(int(sys.argv[1]))
     else :
         rng = NumpyRandomWrapper()
         
     # Run CMA-ES
-    best_individual, best_fitness = cma_es.run(rng,num_vars=num_vars,
+    best_individual, best_fitness = cma_es.run(rng,
                                            display=display,use_log_scale=True,
                                            **args)
     
     # Display the results
-    print("Best Individual:", best_individual)
-    print("Best Fitness:", best_fitness)
+    if show:
+        print("Best Individual:", best_individual)
+        print("Best Fitness:", best_fitness)
     
     if display :
         ioff()
-        show()
+        if show: show()
+
+    return {'best_fitness': best_fitness}
+
+results = run_benchmark(run, 'results/es3', args, {
+        'pop_size': [20],
+        'num_offspring': [100],
+        'num_vars': [10, 20]
+    }, 
+    problems=[benchmarks.Rosenbrock, benchmarks.Sphere, benchmarks.Rastrigin],
+    combine=False)

@@ -81,8 +81,8 @@ def run(args, show=True):
     return { f'best_fitness_{mode}': max(best_fitnesses[i]) for i, mode in enumerate(strategy_modes)}
 
 results = run_benchmark(run, 'results/es2', args, {
-        'mixing_number': [1, 5],
-        'num_offspring': [20, 100, 200],
+        'mixing_number': [1, 5, 10],
+        'num_offspring': [20, 100, 160],
     }, 
-    problems=[benchmarks.Rosenbrock], # benchmarks.Sphere, benchmarks.Rastrigin 
+    problems=[benchmarks.Rosenbrock, benchmarks.Sphere, benchmarks.Rastrigin],
     combine=True)

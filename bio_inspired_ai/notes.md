@@ -26,7 +26,7 @@ Yes, as mentioned above.
 
 - **How do the values of μ, ρ, and λ influence the performance given a particular self-adaptation strategy and other parameters?** \
 With ρ=1, the Global self-adaptation strategy gives the best results, while with ρ>1 the Individual strategy seems to be the best choice.
-Regarding the values of λ, 
+Regarding the values of λ, with a lower value (e.g. 20) gives better results using the Global strategy, while a higher value (e.g 200) gives better results when using the Individual strategy.
 
 - **Can you come up with any rules of thumb for choosing these parameters?** \
 In general, with ρ=1, it may be better to use a Global self-adaptation strategy. In the other cases, with ρ>1, the Individual strategy seems to give the best results. The performance of the None strategy are in every case worse, so it may preferable to not use it.
@@ -34,9 +34,9 @@ In general, with ρ=1, it may be better to use a Global self-adaptation strategy
 - **Can you find a choice of parameters that work properly across several problems?** \
 After some testing, the parameters that gives the best results across different problems are:
     - μ = 20
-    - λ = 100
+    - λ = 120
     - ρ = 10
-    - self-adaptation strategy = individual
+    - self-adaptation strategy = Individual
 
 ### Exercise 3
 
