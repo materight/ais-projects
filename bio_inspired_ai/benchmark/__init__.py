@@ -50,4 +50,4 @@ def run_benchmark(run_function, output_path, initial_args, custom_args, problems
     # Save results
     print(df)
     df.to_markdown(f'{output_path}/benchmark.csv', tablefmt='github')
-    
+    return df
