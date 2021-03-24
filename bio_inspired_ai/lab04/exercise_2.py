@@ -33,16 +33,16 @@ Edit this part to do the exercises
 """
 
 display = True# Plot initial and final populations
-num_vars = 3 # set 3 for Kursawe, set to 19+num_objs for DTLZ7
-num_objs = 3 # used only for DTLZ7
+num_vars = 2+19 # set 3 for Kursawe, set to 19+num_objs for DTLZ7
+num_objs = 2 # used only for DTLZ7
 
 # parameters for NSGA-2
 args = {}
 args["pop_size"] = 50
 args["max_generations"] = 100
 
-problem = benchmarks.Kursawe(num_vars) # set num_vars = 3
-#problem = benchmarks.DTLZ7(num_vars,num_objs) # set num_objs = 3 and num_vars = 19+num_objs
+#problem = benchmarks.Kursawe(num_vars) # set num_vars = 3
+problem = benchmarks.DTLZ7(num_vars,num_objs) # set num_objs = 3 and num_vars = 19+num_objs
 
 #problem = MyBenchmark(num_vars, [benchmarks.Rastrigin, benchmarks.Schwefel] )
 #problem = MyBenchmark(num_vars, [benchmarks.Sphere, benchmarks.Rastrigin, benchmarks.Schwefel] )
