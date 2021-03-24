@@ -1,5 +1,7 @@
 # Bio-Inspired Artificial Intelligence - Lab. Notes  
 
+All the experiment have been run with seed = 42
+
 ## Lab. 01
 
 ## Lab. 02
@@ -41,17 +43,42 @@ After some testing, the parameters that gives the best results across different 
 ### Exercise 3
 
 - **Can CMA-ES find optima to different problems with fewer function evaluations?** \
+TODO
 
 - **How do these differences change with different pop. sizes and problem dimensions?** \
+TODO
 
 ### Questions
 - **Do the observations you made while varying μ, ρ, and λ confirm or contradict the conclusions you drew last week?** \
+TODO
 
 - **What are the advantages of self-adaptation in evolutionary computation?** \
+TODO
 
 - **In what ways might self-adaptation be occurring in biological organisms?** \
+TODO
 
 - **Compare the different self-adaptation strategies explored in this exercise. In what ways are certain strategies better than others for optimization? In what ways are certain strategies more biologically plausible than others?** \
+TODO
 
 - **Describe what reasons may contribute to better performance of CMA-ES and what can be the conditions when CMA-ES is not better than a basic ES.** \
+TODO
 
+## Lab. 04
+
+### Exercise 1
+- **What happens when you run the GA with this fitness function (Kursawe)?**
+The GA try to find a solution that go towards the minimum on both objectives. In particular, with both weights set to 0.5, we can clearly see that the GA algorithm find solution that are very close to one of the local minimums of the second objective, in particular to the local minimum that is closer to the global minimum of the first objective.
+
+- **Why do you obtain this result?**
+This is because both objectives are given the same importance. However, since the fitness values of the second objective are much larger outside the local minimum, the GA try to first find solutions that are in that minimum. Therefore the final population displacement resemble a cross, similar to the landscape of the second objective function. Between all the local minimum however, the GA select the one nearer to the global minimum of the second objective.
+
+- **What happens if you give the first (or second) objective all of the weight?**
+By giving all the weights to the first objective, the GA find a best solution only for that objective, therefore we obtain a population centered on its global minimum. The same result is obtained if we assign all the weights to the second objective, with the GA minimizing only that function.
+
+- **Can you find a weighting able to find a solution that approaches the optimum on both objectives?**
+By setting the weights to `[0.7, 0.3]` we find a good compromise between the two
+
+- **Does your weighting still work on the new problem (DTLZ7)?**
+
+- **Can you think of a method for combining the objectives that might work better than using a weighted sum?**
