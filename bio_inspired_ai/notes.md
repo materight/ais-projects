@@ -64,9 +64,9 @@ TODO
 - **Describe what reasons may contribute to better performance of CMA-ES and what can be the conditions when CMA-ES is not better than a basic ES.** \
 TODO
 
-## Lab. 04
+## Lab. 04 (Multi-Objective Problems)
 
-### Exercise 1
+### Exercise 1 (Scalarization)
 - **What happens when you run the GA with this fitness function (Kursawe)?**
 The GA try to find a solution that go towards the minimum on both objectives. In particular, with both weights set to 0.5, we can clearly see that the GA algorithm find solution that are very close to one of the local minimums of the second objective, in particular to the local minimum that is closer to the global minimum of the first objective.
 
@@ -77,8 +77,19 @@ This is because both objectives are given the same importance. However, since th
 By giving all the weights to the first objective, the GA find a best solution only for that objective, therefore we obtain a population centered on its global minimum. The same result is obtained if we assign all the weights to the second objective, with the GA minimizing only that function.
 
 - **Can you find a weighting able to find a solution that approaches the optimum on both objectives?**
-By setting the weights to `[0.7, 0.3]` we find a good compromise between the two
+By setting the weights to `[0.7, 0.3]` we find a good compromise between the fitness on two objectives, i.e. we obtain a fitness of -6.79 for the first and -6.82 for the second.
 
 - **Does your weighting still work on the new problem (DTLZ7)?**
+If we use DTLZ7 with `num_obj = 2` and weights `[0.7, 0.3]` we obtain a fitness of 0 for the first objective and 4.0 for the second objective. However, if we change the weights to `[0.55, 0.45]`, we obtain finesses of 0.85 and 2.86 respectively, a solution that may preferable based on the context.
 
 - **Can you think of a method for combining the objectives that might work better than using a weighted sum?**
+In the case of DTLZ7, if we want to obtain a better fitness on the second objective, we may want to compute the total fitness as a non-linear combination of the fitnesses, e.g. f = f1^0.5 + f2^2
+
+### Exercise 2 (NSGA-2)
+- **How do the solutions you find here compare to those found in Exercise 1?**
+
+- **Is there a single solution that is clearly the best?**
+
+- **Can you still find good solutions (with DTLZ7)?**
+
+- **What happens if you increase the population size or the number of generations?**

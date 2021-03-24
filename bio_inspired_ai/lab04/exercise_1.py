@@ -25,8 +25,8 @@ this on different fitness functions.
 """
 
 display = True# Plot initial and final populations
-num_vars = 2 # set 3 for Kursawe, set to 19+num_objs for DTLZ7
-num_objs = 3 # used only for DTLZ7
+num_vars = 19 + 2 # set 3 for Kursawe, set to 19+num_objs for DTLZ7
+num_objs = 2 # used only for DTLZ7
 
 # parameters for the GA
 args = {}
@@ -35,10 +35,10 @@ args["max_generations"] = 100
 
 # make sure that this array has the same size as num_objs
 #args["fitness_weights"] = [0.5, 0.5]
-args["fitness_weights"] = [1, 0]
+args["fitness_weights"] = [0.0, 1]
 
-problem = benchmarks.Kursawe(num_vars) # set num_vars = 3
-#problem = benchmarks.DTLZ7(num_vars,num_objs) # set num_objs = 3 and num_vars = 19+num_objs
+#problem = benchmarks.Kursawe(num_vars) # set num_vars = 3
+problem = benchmarks.DTLZ7(num_vars, num_objs) # set num_objs = 3 and num_vars = 19+num_objs
 
 """
 -------------------------------------------------------------------------
@@ -57,7 +57,8 @@ if __name__ == "__main__" :
                                         **args)
     
     print("Best Individual", best_individual)
-    print("Best Fitness", best_fitness)
+    print("Objectives Fitness", problem(*best_individual))
+    print("Tot Fitness", best_fitness)
     
     if display :    
         ioff()

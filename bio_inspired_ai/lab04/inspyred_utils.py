@@ -61,7 +61,7 @@ class CombinedObjectives(Pareto):
         else : 
             weights = asarray([1 for _ in pareto.values])
         
-        self.fitness = sum(asarray(pareto.values) * weights)
+        self.fitness = pareto.values[0]**.5 + pareto.values[1]**4 # sum(asarray(pareto.values) * weights)
         
     def __lt__(self, other):
         return self.fitness < other.fitness
