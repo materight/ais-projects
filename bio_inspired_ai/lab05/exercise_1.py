@@ -21,8 +21,8 @@ display = True
 
 # parameters for NSGA-2
 args = {}
-args["pop_size"] = 10
-args["max_generations"] = 10
+args["pop_size"] = 30
+args["max_generations"] = 500
 constrained = True
 
 """

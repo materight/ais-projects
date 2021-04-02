@@ -25,7 +25,7 @@ class ConstrainedBenchmark(Benchmark):
         """The constraint evaluator function for the benchmark problem."""
         raise NotImplementedError
 
-usePenalty = False
+usePenalty = True
 
 #-----------------------------------------------------------------------
 #                 SINGLE-OBJECTIVE CONSTRAINED PROBLEMS
@@ -122,7 +122,7 @@ class RosenbrockDisk(ConstrainedBenchmark):
         return (1-x)**2 + 100*(y-x**2)**2
     
     def g1(self,x,y):
-        return x**2 + y**2 - 2
+        return x**2 + y**2 - 20
         
     def printSolution(self,c):
         f = self.f(c[0],c[1])
@@ -283,7 +283,8 @@ class SphereCircle(ConstrainedBenchmark):
     def __init__(self, dimensions=2):
         Benchmark.__init__(self, dimensions)
         self.bounder = ec.Bounder([-5.12] * self.dimensions, [5.12] * self.dimensions)
-        #self.bounder = ec.Bounder([-20] * self.dimensions, [20] * self.dimensions)
+        #self.bounder = ec.Bounder([-10] * self.dimensions, [10] * self.dimensions)
+        #self.bounder = ec.Bounder([-50] * self.dimensions, [50] * self.dimensions)
         self.maximize = True
     
     def generator(self, random, args):
@@ -341,7 +342,7 @@ class SphereConstrained(ConstrainedBenchmark):
     def __init__(self, dimensions=2):
         Benchmark.__init__(self, dimensions)
         self.bounder = ec.Bounder([-5.12] * self.dimensions, [5.12] * self.dimensions)
-        self.maximize = False
+        self.maximize = True
         self.global_optimum = [0 for _ in range(self.dimensions)]
     
     def generator(self, random, args):
@@ -352,38 +353,38 @@ class SphereConstrained(ConstrainedBenchmark):
         for c in candidates:
             f = self.f(c[0],c[1])
             if usePenalty:
-                pass # Change this line to handle penalty function
                 # penalty function (note that in this case we are minimizing, so we add a positive value)
-                #g1 = self.g1(c[0],c[1]) # <=0
-                #g2 = self.g2(c[0],c[1]) # <=0
-                #...
-                #if g1 > 0 or g2 > 0 or ...:
-                #    f = f + ...
+                g1 = self.g1(c[0],c[1]) # <=0
+                g2 = self.g2(c[0],c[1]) # <=0
+                g3 = self.g3(c[0],c[1]) # <=0
+                if g1 > 0: f = -1
+                if g2 > 0: f = f - g2
+                if g3 > 0: f = f - g3
             fitness.append(f)
         return fitness
 
     def constraintsEvaluator(self, candidates, args):
         constraints = []
         for c in candidates:
-            pass
             # Change this part to evaluate the constraints
-            #g1 = self.g1(c[0],c[1]) # <=0
-            #g2 = self.g2(c[0],c[1]) # <=0
-            #...
-            #constraints.append([g1,g2,...])
+            g1 = self.g1(c[0],c[1]) # <=0
+            g2 = self.g2(c[0],c[1]) # <=0
+            g3 = self.g2(c[0],c[1]) # <=0
+            constraints.append([g1, g2, g3])
         return constraints
 
     def f(self,x,y):
         return x**2 + y**2
 
     # Implement here some constraints
-    '''
     def g1(self,x,y):
-        return ...
+        return x**2 + y**2 - 1
    
-    def g1(self,x,y):
-        return ...
-    '''
+    def g2(self,x,y):
+        return 1 - x
+
+    def g3(self,x,y):
+        return 1 - y
    
     def printSolution(self,c):
         f = self.f(c[0],c[1])

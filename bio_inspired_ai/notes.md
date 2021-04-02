@@ -108,7 +108,7 @@ Yes, for example a solution (found with pop_size=10 and max_gen=10) with a weigh
 The obtained Pareto front has a clear descending pattern, with an elbow at ~0.62kg that can be identified as shown in the image below. Before the elbow, the stopping time (f1) decrease rapidly with a minimum increase in the total weight (f0). An optimal approach may be to select the nearest solution to this elbow, since after that value the weight increase rapidly without any noteworthy improvement on the stopping time.
 
 <div style="text-align:center">
-    <img src="img/lab04_es3.png" alt="Pareto front analysis" width="300"/>
+    <img src="img/lab04_es3_1.png" alt="Pareto front analysis" width="300"/>
 </div>
 
 ### Questions
@@ -130,14 +130,54 @@ Some example of biological phenotypic traits that have an impact on the fitness 
 With respect to the unconstrained solution, the range of the results is much narrower (see image below). In particular, the maximum stopping time (f1) is shorter from (~16 to ~11), and the maximum weight (f0) is lower (from ~2.2 to ~1.5). Moreover, the tradeoff between the two  metrics is less "steep", i.e. it's more difficult to identify an elbow in the trade-off between weight and stopping time w.r.t. the unconstrained version, and therefore it's more difficult to identify the "best" solutions with the best trade-off in the Pareto front.
 
 <div style="text-align:center">
-    <img src="img/lab05_es1.png" alt="Pareto front analysis" width="300"/>
+    <img src="img/lab05_es1_1.png" alt="Pareto front analysis" width="300"/>
 </div>
 
 - **Do your previous parameters continue to solve the problem?** \
-
+Yes, the parameters used for the unconstrained version (pop_size=20, max_gen=100) obtain better results than the default ones (pop_size=10, max_gen=10).
 
 - **Try to increase the population size and/or the number of generations to see if you can find better solutions.** \
+By increasing the parameters values to pop_size=30 and max_gen=500 we obtain a larger choice of good solutions and the Pareto front become more visible. However, the solutions are not particularly better in terms of dominance with the previous ones. 
+
+<div style="text-align:center">
+    <img src="img/lab05_es1_2.png" alt="Pareto front analysis" width="300"/>
+</div>
 
 ### Exercise 2
 
+- **Do you see any difference in the GA’s behavior (and results) when the penalty is enabled or disabled?** \
+When using the RosenbrockDisk problem class with penalties, the best fitness value obtain is usually an order of magnitude lower than the best fitness obtained by the version without penalties. However, the version without penalties is unable to find feasible solutions, as opposed to the penalized version. Moreover the solutions are less sparse w.r.t the version with penalties.
+
+- **Try to modify the penalty functions used in the code of each benchmark function, and/or change the main parameters of the GA. Are you able to find the optimum on all the benchmark functions you tested?** \
+With RosenbrockDisk, by setting penalty function to `g(x, y) = x^2 + y^2 - 20` (instead of -2), we obtain a best fitness close to the unconstrained version, with a value (0.0004) an order of magnitude smaller than the one with the original penalty function (0.006). The best results are obtained by also changing the gaussian_stdev to 0.1 and the mutation_rate to 0.8, with a final best fitness of 0.0001.
+
+- **Is the GA able to find the optimal solution lying on the unit circle (with the SphereCircle benchmark)?**
+With the default values, no: the optimal solution (with a fitness of 2.02) lies outside the unit circle. The solution closest to the unit circle is obtained with pop_size=50 and gaussian_stdev=0.2, with a total penalty of 0.23. However, this solution is still unfeasible. By increasing the max_gen param to 400, we are able to obtain a solution very close to the unit circle, with a fitness of 1.03.
+
+- **By default, the sphere function is defined in a domain [−5.12, 5.12] along each dimension. Try to increase the search space to progressively increasing boundaries. Is the GA still able to explore the feasible region and find the optimum?** \
+Yes, even by increasing the search space to [-10, 10] or [-20, 20], the results are exactly the same as the ones obtained with a domain of [−5.12, 5.12].
+
+- **If not, try to think of a way to guide the GA towards the feasible region. How could you change the penalty function to do so?**
+I don't think it is possible to change the penalty function, since it is the penalty function that defines the constraint of having a solution in the unit circle.
+
+- **Try to modify the sphere function problem by adding one or more linear/non-linear constraints, and analyze how the optimum changes depending on the presence of constraints.**
+By adding a constraint like `x < 1` (that becomes `0 < 1 - x`) and `y < 1`, we are able to obtain solutions that resides very close to the unit circle, i.e. with a fitness of 1.0008 (better then the previous fitness of 1.03). In this case, we use three constraints in total:
+```python
+f = x**2 + y**2
+# Constraints
+g1 = x**2 + y**2 - 1
+g2 = 1 - x
+g3 = 1 - y
+# Penalties
+if g1 > 0: f = -1
+if g2 > 0: f = f - g2
+if g3 > 0: f = f - g3
+```
+
 ### Questions
+
+- **What do you think is the most efficient way to handle constraints in EAs?**
+If we consider computational efficiency, the most efficient way of handling constraints in EAs is probably by penalty, since it does not require additional expensive computations than an unconstrained EA and it is easy to implement. We can also use all the existing EA algorithm by simply changing the fitness function.
+
+- **Do you think that the presence of constraints makes the search always more difficult? Can you think of cases in which the constraints could actually make the search easier?**
+in general es, they make the search more difficult because they introduce additional factors that add complexity the objective's fitness landscape, therefore potentially reducing the convergency speed. However, if we have a clear idea of the kind of solution we want to obtain, we can exploit the constraints to direct the search process towards the wanted feasible space. In this case the constraints would be only a way to limit the search space, since they would increase/decrease the fitness according to previous knowledge we have about the problem. They would not be something that we need to trade-off with the actual fitness and that slow down the search space.

@@ -17,20 +17,20 @@ Edit this part to do the exercises
 
 # parameters for the GA
 args = {}
-args["max_generations"] = 100 # Number of generations of the GA
-args["pop_size"] = 20 # population size
-args["gaussian_stdev"] = 0.5 # Standard deviation of the Gaussian mutations
+args["max_generations"] = 400 # Number of generations of the GA
+args["pop_size"] = 50 # population size
+args["gaussian_stdev"] = 0.2 # Standard deviation of the Gaussian mutations
 args["mutation_rate"] = 0.5 # fraction of loci to perform mutation on
 args["tournament_size"] = 2
 args["num_elites"] = 1 # number of elite individuals to maintain in each gen
 
-args["problem_class"] = constrained_benchmarks.RosenbrockCubicLine
+#args["problem_class"] = constrained_benchmarks.RosenbrockCubicLine
 #args["problem_class"] = constrained_benchmarks.RosenbrockDisk
 #args["problem_class"] = constrained_benchmarks.MishraBirdConstrained
 #args["problem_class"] = constrained_benchmarks.Townsend
 #args["problem_class"] = constrained_benchmarks.Simionescu
 #args["problem_class"] = constrained_benchmarks.SphereCircle
-#args["problem_class"] = constrained_benchmarks.SphereConstrained
+args["problem_class"] = constrained_benchmarks.SphereConstrained
 
 """
 -------------------------------------------------------------------------
