@@ -108,7 +108,7 @@ Yes, for example a solution (found with pop_size=10 and max_gen=10) with a weigh
 The obtained Pareto front has a clear descending pattern, with an elbow at ~0.62kg that can be identified as shown in the image below. Before the elbow, the stopping time (f1) decrease rapidly with a minimum increase in the total weight (f0). An optimal approach may be to select the nearest solution to this elbow, since after that value the weight increase rapidly without any noteworthy improvement on the stopping time.
 
 <div style="text-align:center">
-<img src="img/lab04_es3.png" alt="Pareto front analysis" width="300"/>
+    <img src="img/lab04_es3.png" alt="Pareto front analysis" width="300"/>
 </div>
 
 ### Questions
@@ -122,3 +122,22 @@ It can be useful to understand what kind of trade-off between the objectives we 
 - **In biological evolution it is possible to think of many phenotypic traits that contribute to the ultimate fitness of an organism (try to enumerate some of these). What (if any) relevance do multi-objective evolutionary algorithms have to biology?** \
 Some example of biological phenotypic traits that have an impact on the fitness of an organism include height, wing length, eyesight, and any other characteristic that ultimately give an advantage over the other organisms. In biology, evolution is probably driven by different objectives that can compete with each other, like in a multi-objective EA. For instance, having larger wings may increase the overall stamina and speed of a bird, at the expense of being more easily identifiable by a prey.
 
+## Lab. 05 (Constrained Problems)
+
+### Exercise 1
+
+- **How do your results change from the unconstrained version (from the previous lab)?** \
+With respect to the unconstrained solution, the range of the results is much narrower (see image below). In particular, the maximum stopping time (f1) is shorter from (~16 to ~11), and the maximum weight (f0) is lower (from ~2.2 to ~1.5). Moreover, the tradeoff between the two  metrics is less "steep", i.e. it's more difficult to identify an elbow in the trade-off between weight and stopping time w.r.t. the unconstrained version, and therefore it's more difficult to identify the "best" solutions with the best trade-off in the Pareto front.
+
+<div style="text-align:center">
+    <img src="img/lab05_es1.png" alt="Pareto front analysis" width="300"/>
+</div>
+
+- **Do your previous parameters continue to solve the problem?** \
+
+
+- **Try to increase the population size and/or the number of generations to see if you can find better solutions.** \
+
+### Exercise 2
+
+### Questions
