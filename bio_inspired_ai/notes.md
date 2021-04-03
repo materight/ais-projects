@@ -4,7 +4,7 @@ All the experiment have been run with `seed=42`.
 
 
 
-## Lab. 01
+## Lab. 01 - Introduction
 
 ### Exercise 1
 - **Do the mutations tend to improve or worsen the fitness of the parent?** \
@@ -52,17 +52,54 @@ The *genotype* is the vector representations of the solution. The *phenotype* is
 - **What are the advantages and disadvantages of low/high mutation magnitudes in EAs?** \
 An higher mutation magnitudes value needs less generations to approach the minima, but if it's too high there is a risk of doing single steps that are too large and go beyond the optimum point. On the other hand, a low magnitude values may produce more accurate results, bu the convergence will be slower.
 
-- **Based on the previous observations, do you think there is an optimal mutation magnitude for a biological organism? Do mutations typically improve or worsen the fitness of a biological organism? In which situations do you think low/high mutation rates are advantageous for a population of bacteria?**
+- **Based on the previous observations, do you think there is an optimal mutation magnitude for a biological organism? Do mutations typically improve or worsen the fitness of a biological organism? In which situations do you think low/high mutation rates are advantageous for a population of bacteria?** \
 I think that in the particular case of biological organisms the mutations usually have no noticeable effect on the fitness of the organism. In the case of a bacteria population, a higher mutation rate may be advantageous in extreme environments, where the living conditions can change rapidly and an high adaptability can be determinant for survival.
 
 
 
-## Lab. 02
+## Lab. 02 - Evolutionary Algorithms I
 
 ### Exercise 1
+- **Do you see any difference between the two results (crossover-only and mutation-only)? Why?** \
+The mutation-only EA obtained a better score than the crossover-only EA. This is probably because with mutations we are introducing new information in the genes, while with crossover this is not possible. Therefore when using crossover-only, a "bad" initialization can lead to no improvements and thus a "bad" offspring. Moreover, the mutation-only EA obtained a better distribution of individuals in the search space. 
+
+### Exercise 2
+- **Is there an optimal crossover fraction for this fitness function? Why?** \
+After some tests, we can observe that in general, with a crossover rate of:
+    - *0%* we obtain a large variability in the results, but the fitness is overall higher (worse) than the other crossover rates, the same for the best individual's fitness. This correspond to a mutation-only EA.
+    - *25%-50%-75%* we obtain very little changes in the results, considering both the average and best fitnesses. This can variate from execution to execution.
+    - *100%* we obtain the best results, with the best fitness. The average is fitness of the final population is also lower.
+
+### Exercise 3
+- **Which tournament size gives better results for the fitness function Sphere and why?** \
+A tournament size of 10 gave better results (0.02) than a size of 2 (0.27). This is probably because the pressure selection is higher, since if used a group size of 2, we would have 25/2=~12 groups, and therefore 12 best individuals would be selected. Instead, with a tournament size of 10, we have 25/10=~2 groups, and 2 best individuals are selected. Therefore, the convergence is faster since we have only 1 global optima and we consider at each generation only the best 2 individuals.
+
+- **Which tournament size gives better results for the fitness function Rastrigin and why?** \
+A tournament size of 2 gave better results (52,11) than a size of 2 (78.59). This is probably because the pressure selection is lower, and since we don't have just one global minimum (as the Sphere function) but many local minimum, a lower selection pressure gives a better coverage of the fitness landscape. Therefore, by using a lower tournament size we are avoiding to concentrate on few local minimums and we are instead exploring more the landscape.
+
+### Exercise 4
+- **Do you see a different algorithmic behavior when you test the EA on different benchmark functions? Why?** \
+In general, the same parameter values can obtain very different results on different problems.
+
+- **What is the effect of changing the number of variables on each tested function?** \
+An higher number of variables drastically decrease the performance of the EA, in every tested function. This is caused by the "curse of dimensionality" since more variables mean a larger space to explore.
+
+### Questions
+- **Why is it useful to introduce crossover in EA? Can you think of any cases when mutation-only can work effectively, without crossover? What about using crossover only, without mutation?** \
+Crossover can be useful to exploit the synergy between good solutions, with the hope of obtaining a better solution. Mutation-only can work effectively for example when the fitness landscape has just one global optimum. However it is prone to lose the information acquired in good solutions. Crossover-only is usually not that useful, since it does not introduce any new information in the solution.
+
+- **What’s the effect of changing the fraction of offspring created by crossover?** \
+By changing the fraction of offspring created by crossover, we generally increase the convergence speed.
+
+- **Are there optimal parameters for an EA?** \
+No, at least not "global optimal parameters" that works well for every problem, since the performance obtained by a set of parameters strictly depend on the type of the problem, in particular on the fitness function we want to optimize.
+
+- **What are the advantages and disadvantages of low/high selection pressure?** \
+An high selection pressure can obtain a faster convergence, since we exploit only the best individuals. However, it can also reduce the variability of the population, thus the algorithm may get stuck in a local minima instead of exploring more the search space (*premature convergence*).
 
 
-## Lab. 03
+
+## Lab. 03 - Evolutionary Algorithms II
 
 ### Exercise 1
 - **What happens if you make λ smaller e.g. λ = μ?** \
@@ -120,7 +157,7 @@ TODO
 
 
 
-## Lab. 04 (Multi-Objective Problems)
+## Lab. 04 - Multi-Objective Problems
 
 ### Exercise 1 (Scalarization)
 - **What happens when you run the GA with this fitness function (Kursawe)?** \
@@ -178,7 +215,7 @@ Some example of biological phenotypic traits that have an impact on the fitness 
 
 
 
-## Lab. 05 (Constrained Problems)
+## Lab. 05 - Constrained Problems
 
 ### Exercise 1
 - **How do your results change from the unconstrained version (from the previous lab)?** \
