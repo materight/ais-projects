@@ -1,10 +1,66 @@
 # Bio-Inspired Artificial Intelligence - Lab. Notes  
 
-All the experiment have been run with seed = 42
+All the experiment have been run with `seed=42`.
+
+
 
 ## Lab. 01
 
+### Exercise 1
+- **Do the mutations tend to improve or worsen the fitness of the parent?** \
+In general the mutations do not produce any particular worsening or improvement in the fitness of the parent: since they are random mutations, they can either go toward or away from the minimum. 
+
+- **Are low or high mutation magnitudes best for improving the fitness? How does this depend on the initial value of the parent and on the number of dimensions of the search space?** \
+In this case, higher mutations magnitudes have a better change of producing a better offspring. Since we are running the mutation on just one iteration, the magnitude represent the maximum "range of motion" from the parent when searching a new solution. However, if the order of magnitude is too high, the new solutions will be more scattered and the change of having an optimum solution will be lower. Therefore, the magnitude should be proportional to the initial parent distance form the optimum.
+
+### Exercise 2
+- **Compare different values for the number of dimensions of the search space.** \
+In general, an higher number of dimensions corresponds to an overall higher fitness (worse), since the number of feature with potential error is larger and we are not normalizing the fitness over the number of dimensions.
+
+- **Compare different values for the value of the parent (how close it is to the optimum).** \
+With lower initial parent values, the offspring solutions have more change of being near the optimum, and therefore the overall fitness is lower (better).
+
+- **Compare different values for the mutation magnitude σ.** \
+With higher magnitude values, the maximum deviation obtainable from the initial parent solution is higher. Therefore, if the initial distance of the parent from the optimum is large, the offspring have better change of be near the optimum (zero). Otherwise, if the initial parent values are near the optimum, there is an higher chance of "overshooting" the minimum and skipping it, producing a more scattered offspring with more solutions that are distant from the zero, while the solutions obtained with a lower mutation magnitude would have been less scattered and better overall.
+
+### Exercise 3
+- **How close is the best individual from the global optimum?** \
+In 1-D, the best individual is at 0.0013, very near to the optimum (zero).
+
+- **Increase the dimensionality, how close are the best individuals now from the global optimum?** \
+In 2-D, the best individual has a fitness of 0.0258. In 10-D, the best individual has a fitness of 1.8309.
+
+- **Can you get as close as in the one-dimensional case by modifying the mutation magnitude and/or the number of generations?** \
+By changing the mutation magnitude to 0.1 and the number of generations to 500, the EA is able to reach a fitness of 0.0002 for 2-D and 0.1362 for 10-D.
+
+### Exercise 4
+- **Did you see any difference in the best fitness obtained?** \
+After some tests, we can summarize the results as obtained based on the parameters values. With:
+    - *Low σ (~0.01), low #gen (~50)*: poor results, probably caused by slow convergence.
+    - *Low σ (~0.01), high #gen (~500)*: good results, small steps but many generations.
+    - *High σ (~1), low #gen (~50)*: poor results, mutation magnitude too high, "overshoots" the optimum value.
+    - *High σ (~1), high #gen (~500)*: poor results, like before "overshoots" the optimum value. An higher number of generations do not produce any sensible improvements.
+
+    Therefore we can say that:
+    - The *mutation magnitude σ* drives the convergence speed. An higher value needs less generations to approach the minima, but if it's too high there is a risk of doing single steps that are too large and go beyond the optimum point.
+    - The *number of generations* drives the final result distance. More generations can produce a better result, but the algorithm is more computationally expensive.
+
+### Questions
+- **What is the genotype and what is the phenotype in the problems considered in this lab?** \
+The *genotype* is the vector representations of the solution. The *phenotype* is the solution itself, with specific real values on the vector representation.
+
+- **What are the advantages and disadvantages of low/high mutation magnitudes in EAs?** \
+An higher mutation magnitudes value needs less generations to approach the minima, but if it's too high there is a risk of doing single steps that are too large and go beyond the optimum point. On the other hand, a low magnitude values may produce more accurate results, bu the convergence will be slower.
+
+- **Based on the previous observations, do you think there is an optimal mutation magnitude for a biological organism? Do mutations typically improve or worsen the fitness of a biological organism? In which situations do you think low/high mutation rates are advantageous for a population of bacteria?**
+I think that in the particular case of biological organisms the mutations usually have no noticeable effect on the fitness of the organism. In the case of a bacteria population, a higher mutation rate may be advantageous in extreme environments, where the living conditions can change rapidly and an high adaptability can be determinant for survival.
+
+
+
 ## Lab. 02
+
+### Exercise 1
+
 
 ## Lab. 03
 
@@ -19,7 +75,6 @@ By increasing the mixing number ρ, the overall fitness is better (lower) and th
 The results changes based on the value of ρ. With a ρ=1, between None (no self-adaptation), Global and Individual strategies, Global gives the better results by a factor of 50 w.r.t. the Individual strategy. However, if we increase the value of ρ s.t. ρ>1, e.g. ρ=5, the Individual strategy obtain the best performances overall, by a factor of 10 w.r.t. the Global, while the performance of the None strategy are far behind (fitness = ~143 against ~0.02 of Individual). 
 
 ### Exercise 2
-
 - **How does the self-adaptation strategy influence performance on this problem?** \
 As mentioned before, None, Global and Individual obtain increasingly better results (in this order) with a ρ>1.
 
@@ -41,7 +96,6 @@ After some testing, the parameters that gives the best results across different 
     - self-adaptation strategy = Individual
 
 ### Exercise 3
-
 - **Can CMA-ES find optima to different problems with fewer function evaluations?** \
 TODO
 
@@ -63,6 +117,8 @@ TODO
 
 - **Describe what reasons may contribute to better performance of CMA-ES and what can be the conditions when CMA-ES is not better than a basic ES.** \
 TODO
+
+
 
 ## Lab. 04 (Multi-Objective Problems)
 
@@ -100,7 +156,6 @@ By increasing the population size (e.g. from 50 to 200), we obtain more solution
 By increasing the number of generations (e.g. from 100 to 400), we obtain a better approximation of the real Pareto front, i.e. the solutions are more aligned with the real expected Pareto front. Therefore we obtain better non-dominated solutions.
 
 ### Exercise 3
-
 - **Is the algorithm able to find reasonable solutions to this problem?** \
 Yes, for example a solution (found with pop_size=10 and max_gen=10) with a weight of 1.17Kg and a brake time of 4.16 seconds seems a reasonable solution for a real brake system. If we increase the pop_size (e.g. to 100), we obtain more solutions to choose from in the Pareto front, but the results are not very different from the previous ones. If we instead increase the maximum number of generations (e.g. to 100), we obtain clearly better solutions, for example 0.62kg and 3.73 seconds.
 
@@ -112,7 +167,6 @@ The obtained Pareto front has a clear descending pattern, with an elbow at ~0.62
 </div>
 
 ### Questions
-
 - **When do you think it is appropriate to use a multi-objective evolutionary algorithm vs. combining multiple objectives into a single fitness function?** \
 When there is a clear relation between the objectives that we want to optimize, it is probably better to exploit this relation and combine the objectives into a single fitness function. In the other cases, or if we want to have a better idea of the kind of optimization problem and possible solutions we are dealing with, it may be better to stick with a multi-objective EA.
 
@@ -122,10 +176,11 @@ It can be useful to understand what kind of trade-off between the objectives we 
 - **In biological evolution it is possible to think of many phenotypic traits that contribute to the ultimate fitness of an organism (try to enumerate some of these). What (if any) relevance do multi-objective evolutionary algorithms have to biology?** \
 Some example of biological phenotypic traits that have an impact on the fitness of an organism include height, wing length, eyesight, and any other characteristic that ultimately give an advantage over the other organisms. In biology, evolution is probably driven by different objectives that can compete with each other, like in a multi-objective EA. For instance, having larger wings may increase the overall stamina and speed of a bird, at the expense of being more easily identifiable by a prey.
 
+
+
 ## Lab. 05 (Constrained Problems)
 
 ### Exercise 1
-
 - **How do your results change from the unconstrained version (from the previous lab)?** \
 With respect to the unconstrained solution, the range of the results is much narrower (see image below). In particular, the maximum stopping time (f1) is shorter from (~16 to ~11), and the maximum weight (f0) is lower (from ~2.2 to ~1.5). Moreover, the tradeoff between the two  metrics is less "steep", i.e. it's more difficult to identify an elbow in the trade-off between weight and stopping time w.r.t. the unconstrained version, and therefore it's more difficult to identify the "best" solutions with the best trade-off in the Pareto front.
 
@@ -144,7 +199,6 @@ By increasing the parameters values to pop_size=30 and max_gen=500 we obtain a l
 </div>
 
 ### Exercise 2
-
 - **Do you see any difference in the GA’s behavior (and results) when the penalty is enabled or disabled?** \
 When using the RosenbrockDisk problem class with penalties, the best fitness value obtain is usually an order of magnitude lower than the best fitness obtained by the version without penalties. However, the version without penalties is unable to find feasible solutions, as opposed to the penalized version. Moreover the solutions are less sparse w.r.t the version with penalties.
 
@@ -175,7 +229,6 @@ if g3 > 0: f = f - g3
 ```
 
 ### Questions
-
 - **What do you think is the most efficient way to handle constraints in EAs?**
 If we consider computational efficiency, the most efficient way of handling constraints in EAs is probably by penalty, since it does not require additional expensive computations than an unconstrained EA and it is easy to implement. We can also use all the existing EA algorithm by simply changing the fitness function.
 

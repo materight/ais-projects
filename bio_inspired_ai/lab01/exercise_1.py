@@ -12,9 +12,9 @@ number of dimensions, but plotting of the fitness landscape is only
 possible for the 1D or 2D case.
 """
 
-#x0 = [10] # 1 parameter
-#x0 = [20, 20]; # 2 parameters
-x0 = 10*ones(50); # 50 parameters
+x0 = [10] # 1 parameter
+# x0 = [20, 20]; # 2 parameters
+# x0 = 10*ones(50); # 50 parameters
 
 # Set the standard deviation of the Gaussian mutations
 std_dev = 1
