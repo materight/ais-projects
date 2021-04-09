@@ -20,7 +20,7 @@ num_vars = 2 # Number of dimensions of the search space
 args = {}
 
 # the problem class
-args["problem_class"] = benchmarks.Sphere
+args["problem_class"] = benchmarks.Rastrigin
 
 # other problems to try,
 # see  https://pythonhosted.org/inspyred/reference.html#module-inspyred.benchmarks
@@ -36,8 +36,8 @@ args["problem_class"] = benchmarks.Sphere
 #benchmarks.Schwefel
 
 # common parameters
-args["max_generations"] = 100 # Number of generations
-args["pop_size"] = 50 # population size
+args["max_generations"] = 50 # Number of generations
+args["pop_size"] = 100 # population size
 
 # parameters for the GA
 args["gaussian_stdev"] = 0.5 # Standard deviation of the Gaussian mutations

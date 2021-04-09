@@ -271,3 +271,39 @@ If we consider computational efficiency, the most efficient way of handling cons
 
 - **Do you think that the presence of constraints makes the search always more difficult? Can you think of cases in which the constraints could actually make the search easier?** \
 in general es, they make the search more difficult because they introduce additional factors that add complexity the objective's fitness landscape, therefore potentially reducing the convergency speed. However, if we have a clear idea of the kind of solution we want to obtain, we can exploit the constraints to direct the search process towards the wanted feasible space. In this case the constraints would be only a way to limit the search space, since they would increase/decrease the fitness according to previous knowledge we have about the problem. They would not be something that we need to trade-off with the actual fitness and that slow down the search space.
+
+
+
+## Lab. 06 - Particle Swarm Optimization I
+
+### Exercise 1
+- **What is the effect of each behavior coefficient?** \
+    - *Cohesion:* the magnitude of the movement component towards the center of mass of the swarm. A lower value of its coefficient translates into a more compact swarm, since the resulting vector to reach the center of mass is divided by this coefficient.
+    - *Alignment:* how much each boid will align according to its neighbors' alignments. Again, a larger value of its coefficient means a more chaotic swarm, since each boid will consider less important the current direction of its neighbors.
+    - *Separation:* the minimum distance each boid has to maintain w.r.t. its neighbors. A lower value means a more compact swarm.
+
+- **Which combination of coefficients leads to the most “natural” flock behavior?** \
+In general, the best natural behavior is obtained with a large cohesion and small alignment and separation values. A small cohesion would make the boids go towards the center with too much velocity, creating a very fast and noisy swarm. Lower values for the alignment and separation keep the boids in the boids in an homogeneous direction and in a compact formation.
+
+### Exercise 2
+- **What kind of behavior does PSO have on different benchmark functions, in comparison with the EAs? Does it show better or worse results? Does it converge faster or not?** \
+In case of the sphere function, the best results are obtained by ES, which also converge faster then GA and PSO. \
+In case of the Rosenbrock function instead, PSO converges faster, but the best results are still obtained by ES. \
+In case of multimodal functions, Rastrigin in particular, we still have that ES obtains better results and convergence speed. \
+With the Griewank function instead, PSO obtain the best solution and converge sooner than ES and GA.
+
+- **Increase the problem dimensionality to 10 or more. What do you observe in this case?** \
+With the Sphere function and a dimensionality of 10, ES obtains again the best results. However, PSO converges faster than ES, while with a dimensionality of 2 ES was faster. If we keep increasing the dimensionality, to 20 or 50, GA starts to obtain better results than PSO and ES, with faster convergence and far better fitnesses, while PSO obtain the worst performance. \
+The same results are obtained also with multimodal functions: after a certain number of dimensions, GA obtains the best results w.r.t. ES and PSO.
+
+- **Change the population size and the number of generations, such that their product is fixed (e.g. 50 × 100, 100 × 100, etc.). Try two or three different combinations and observe the behavior of the three different algorithms. What do you observe in this case? Is it better to have smaller/larger populations or a smaller/larger number of generations? Why?** \
+With unimodal functions, in general it seems to be better to have a small population with a large number of generations. By trying different combinations (i.e. (pop=10, gen=500 (pop=50, gen=100), (100, 50), (500, 10)), we can observe that the best results are obtained, with all three approaches (GA, ES, PSO), with pop_size=10 and max_generations=500. This is probably because we have just one global minimum, so it is not very important to have a greater variability in the population since it cannot end up stuck in a local minimum. Therefore with a larger number of generations the algorithms have more time to improve the results. \
+The same results are not obtained with multimodal functions, where the best fitnesses are achieved with pop_size=50 and max_generations=100, for the same reason explained before. 
+
+### Questions
+- **When do you think it is useful to have a lower (higher) cognitive learning rate? What about the social learning rate?** \
+An higher cognitive learning rate may be better when dealing with multimodal functions, since it favor exploration by giving more importance to the previous best values obtained by the individual. \
+An higher social learning rate instead may be better with unimodal functions, since each individual will move more towards the current best neighbor, which is probably nearer the actual optima.
+
+- **From a biological point of view, which neighborhood topology do you consider as the most plausible?** \
+The distance-based seems to be most plausible if we consider the actual behavior of a swarm, since each individual can only see the neighbors in his field of view.
