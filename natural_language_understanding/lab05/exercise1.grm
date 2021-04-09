@@ -1,0 +1,10 @@
+
+digit = ("0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9");
+
+actors = StringFile['actors.txt'];
+years = ("19" digit{2})|("20"((("0"|"1") digit)|("2" ("0"|"1"))));
+directors = StringFile['directors.txt'];
+producers = StringFile['producers.txt'];
+search_movie =  (("I am " ("looking" | "searching") " for ") | ("show me " | "list ") "some ")? "movies " ("starring " | "with ") actors ", " ("released in " | "from ")? years ", directed by " directors " and produced by " producers;
+export query = Optimize[search_movie];
+

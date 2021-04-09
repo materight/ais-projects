@@ -1,0 +1,6 @@
+
+actors = StringFile['actors.txt'];
+search = ("I am " ("looking" | "searching") " for ") | ("show me " | "list ") "some "? ;
+search_movie = search "movies with " actors;
+export query = Optimize[search_movie];
+
