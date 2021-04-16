@@ -1,5 +1,5 @@
 # Natural Language Understanding - Report Assignment 1 
-Student: **Destro Matteo - 221222**
+Student: **Destro Matteo (221222)**
 
 ## Exercise 1
 *Extract a path of dependency relations from the ROOT to a token* \

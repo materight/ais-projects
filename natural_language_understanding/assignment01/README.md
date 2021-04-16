@@ -1,5 +1,5 @@
 # Natural Language Understanding - Assignment 1 
-Student: **Destro Matteo - 221222**
+Student: **Destro Matteo (221222)**
 
 ## Requirements
 Install [spaCy](https://spacy.io/):
