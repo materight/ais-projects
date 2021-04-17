@@ -307,3 +307,9 @@ An higher social learning rate instead may be better with unimodal functions, si
 
 - **From a biological point of view, which neighborhood topology do you consider as the most plausible?** \
 The distance-based seems to be most plausible if we consider the actual behavior of a swarm, since each individual can only see the neighbors in his field of view.
+
+
+
+## Lab. 07 - Particle Swarm Optimization II
+
+### Exercise 1
