@@ -36,14 +36,14 @@ def main(prng=None, display=False):
     """
 
     # datasets taken from https://people.sc.fsu.edu/~jburkardt/datasets/knapsack_01/knapsack_01.html
-    instance = "01"
+    #instance = "01"
     #instance = "02"
     #instance = "03"
     #instance = "04"
     #instance = "05"
     #instance = "06"
     #instance = "07"
-    #instance = "08"
+    instance = "08"
     capacity = readFileAsList("datasets/knapsack_01/p" + instance + "_c.txt")[0]
     weights =  readFileAsList("datasets/knapsack_01/p" + instance + "_w.txt")
     values =  readFileAsList("datasets/knapsack_01/p" + instance + "_p.txt")

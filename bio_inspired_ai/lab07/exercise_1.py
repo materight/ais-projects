@@ -72,8 +72,8 @@ def main(prng=None, display=False):
         https://people.sc.fsu.edu/~jburkardt/datasets/tsp/tsp.html
         http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/index.html
     """
-    instance = "p01"
-    #instance = "bays29"
+    #instance = "p01"
+    instance = "bays29"
     #instance = "att48"
     points = readFileAsMatrix("datasets/tsp/" + instance + "_xy.txt")
     distances = readFileAsMatrix("datasets/tsp/" + instance + "_d.txt")

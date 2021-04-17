@@ -306,10 +306,33 @@ An higher cognitive learning rate may be better when dealing with multimodal fun
 An higher social learning rate instead may be better with unimodal functions, since each individual will move more towards the current best neighbor, which is probably nearer the actual optima.
 
 - **From a biological point of view, which neighborhood topology do you consider as the most plausible?** \
-The distance-based seems to be most plausible if we consider the actual behavior of a swarm, since each individual can only see the neighbors in his field of view.
+The distance-based topology seems to be most plausible if we consider the actual behavior of a swarm, since each individual can only see the neighbors in his field of view.
 
 
 
 ## Lab. 07 - Particle Swarm Optimization II
 
-### Exercise 1
+### Exercise 1 (TSP)
+- **Which algorithm provides the best solution in most cases? What can you say about the number of function evaluations needed to converge?** \
+In all the three instances of the problem, the best solution was always obtained by the Ant Colony System (ACS), which also converged must faster than the Evolutionary Algorithm (EA). ACS usually reaches the best solution in a matter of ~100 evaluations, and then the fitnesses oscillates without any significant improvement. EA instead shows a different behavior, with a more steady convergence that slows down at nearly ~1000 evaluations. Therefore ACS is the best choice, since it provides (on average) better results in less computational time.
+
+### Exercise 2 (0/1 Knapsack)
+- **Which algorithm provides the best solution in most cases? What can you say about the number of function evaluations needed to converge?** \
+For most of the problem instances, EA and ACS obtained the more or less the same results, without any particular difference in the convergence speed (if we consider only the best solution found in  each evaluation). However, for the last problem instance, were we have a much larger capacity, ACS were able to find a significant better solution than EA (13.5M vs 13.2M). This could also be caused by the slower convergence speed of the EA algorithm, and therefore ACS may be the best choice when dealing with large-scale problems. 
+
+### Exercise 3 (Knapsack with duplicates)
+- **Which algorithm provides the best solution in most cases? What can you say about the number of function evaluations needed to converge?** \
+With this problem ACS obtains again better results. Similar to exercise 1, also in this case ACS has a faster convergence speed: for example, in problem instance 05, ACS converges to the best solution (fitness 1410) almost immediately (~10 evaluations), while EA requires ~200 evaluations to converge to a fitness of only 906. The same behavior can be observed in most of the problem instances.
+
+- **Do you observe any difference on the algorithmic behavior between this exercise and the previous one?** \
+Yes, in particular the performance of ACS and EA were quite similar in the case 0f 0/1 Knapsack, if we do not consider the large case, while in the case of Knapsack with duplicates the results were quite different, with ACS performing better.
+
+### Questions
+- **What are the main differences between continuous and discrete optimization problems? Do you think that any of these two classes of problems is more difficult than the other?** \
+The main difference between continuous and discrete optimization problems is that the latter has additional intrinsic constraints given by the fact that only a certain set of values (or choices) can be accepted as a valid solution. In the case of continuous problems instead every point in the fitness landscape is a valid solution (if we assume a generic optimization problem, with no additional constraints). Therefore, we may consider discrete optimization problems more difficult to solve.
+
+- **Why is ACS particularly suited for discrete optimization?** \
+Because by default ACS already encodes the intrinsic constraints of a discrete problem using the graph representation, i.e. the graph's edges can be seen ad a representation of the discrete constraints. The search process is therefore focused only on exploring valid solutions, allowing for a faster convergence speed, as seen in the previous problems.
+
+- **Consider the two versions of the Knapsack problem (0/1, and with duplicates). Which of the two problems is more challenging from an optimization point of view? Why?** \
+The Knapsack with duplicates is probably the most challenging to solve, since the solution space is much larger. With the 0/1 instance the set of possible solutions (considering also non-valid solutions) is given by the set of all subsets of the items, i.e. 2^N possible solutions. Instead, with the variation with duplicates, for each possible subset of items we also have to consider each possible combination of times each item is picked, making the solution space very large.
