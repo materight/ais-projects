@@ -15,8 +15,8 @@ Implemented in function `get_subtrees(sentence)`, it parses a sentence and extra
 
 ## Exercise 3
 **Check if a given list of tokens (segment of a sentence) forms a subtree.** \
-Implemented in function `is_subtree(sentence, subtree)`, it parses a sentence and checks a correspondence between the given `subtree` variable and the subtrees of each token in the `subtree` list. By doing this, we are able to check for all possible root of the given `subtree` if there is a correspondence in the `sentence` in input.
-- **Input:** a sentence (string) and a subtree (list of strings, where each string is a token).
+Implemented in function `is_subtree(sentence, subtree)`, it parses a sentence and checks a correspondence between the given `subtree` variable and the subtrees of each token in the `subtree` list. By doing this, we are able to check for the subtrees of all possible root of the given `subtree` if there is a correspondence in the input `sentence`.
+- **Input:** a sentence (string) and a subtree (*ordered* list of strings, where each string is a token).
 - **Output:** True/False.
 
 ## Exercise 4
@@ -27,6 +27,6 @@ Implemented in function `get_head(span)`, it parses a span and extracts its head
 
 ## Exercise 5
 **Extract sentence subject, direct object and indirect object spans.** \
-Implemented in function `extract_deps(span)`, it parses a sentence and extracts all the subject (`nsubj`), direct object (`dobj`) and indirect object (`iobj`) spans using the `dep_` property of `Token`.
+Implemented in function `extract_deps(span)`, it parses a sentence and extracts all the subject (`nsubj`), direct object (`dobj`) and indirect object (`iobj`) spans using the `dep_` property of `Token`. For each token that has a dependency relation of either `nsubj`, `dobj` or `iobj` it extracts its subtree.
 - **Input:** a sentence (string).
 - **Output:** a dict of lists. The dict will have 3 keys (`"nsubj"`, `"dobj"`, `"iobj"`), with one list each. The items of the lists are the extracted corresponding spans (strings).
