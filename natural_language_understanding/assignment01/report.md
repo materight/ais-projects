@@ -9,7 +9,7 @@ Implemented in function `get_paths(sentence)`, it parses a sentence and extracts
 
 ## Exercise 2
 **Extract subtree of a dependents given a token.** \
-Implemented in function `get_subtrees(sentence)`, it parses a sentence and extracts the subtrees of each token by using the `subtree` property of the Token object.
+Implemented in function `get_subtrees(sentence)`, it parses a sentence and extracts the subtrees of each token by using the `subtree` property of the `Token` object.
 - **Input:** a sentence (string).
 - **Output:** a list of lists. Each list at index `i` contains the subtree of token `i` in the sentence.
 
@@ -21,9 +21,9 @@ Implemented in function `is_subtree(sentence, subtree)`, it parses a sentence an
 
 ## Exercise 4
 **Identify head of a span, given its tokens.** \
-Implemented in function `get_head(span)`, it parses a span and extracts its head by exploiting the `root` property of the Span object.
+Implemented in function `get_head(span)`, it parses a span and extracts its head by exploiting the `root` property of the `Span` object.
 - **Input:** a span (string). It assumes that the input is a single span.
-- **Output:** a Token object representing the head of the span.
+- **Output:** a `Token` object representing the head of the span.
 
 ## Exercise 5
 **Extract sentence subject, direct object and indirect object spans.** \
