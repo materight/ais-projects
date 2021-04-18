@@ -3,7 +3,7 @@ Student: **Destro Matteo (221222)**
 
 ## Exercise 1
 **Extract a path of dependency relations from the ROOT to a token.** \
-Implemented in function `get_paths(sentence)`, it parses a sentence and extracts dependency relations from the `ROOT` to each one of the tokens by exploiting the `ancestors` property of the Token object. The first element of the path to a token will always be `ROOT`, while the last element will be the dependency relation that connects that specific token.
+Implemented in function `get_paths(sentence)`, it parses a sentence and extracts dependency relations from the `ROOT` to each one of the tokens by exploiting the `ancestors` property of the Token object. The list from `ancestors` is reversed to start from `ROOT`. The first element of the path to a token will always be `ROOT`, while the last element will be the dependency relation that connects that specific token.
 - **Input:** a sentence (string).
 - **Output:** a list of lists. Each list at index `i` represents the path from the `ROOT` to token `i` (i.e. the token in position i in the parsed sentence). Each item of these lists is a dependency relation between two tokens.
 
