@@ -15,7 +15,7 @@ Implemented in function `get_subtrees(sentence)`, it parses a sentence and extra
 
 ## Exercise 3
 **Check if a given list of tokens (segment of a sentence) forms a subtree.** \
-Implemented in function `is_subtree(sentence, subtree)`, it parses a sentence and checks a correspondence between the given `subtree` variable and the subtrees of each token in the `subtree` list. By doing this, we are able to check for the subtrees of all possible root of the given `subtree` if there is a correspondence in the input `sentence`.
+Implemented in function `is_subtree(sentence, subtree)`, it parses a sentence and checks a correspondence between the given `subtree` list and the subtrees of each token in the sentence. By doing this, we are able to check for all the possible subtrees of the tokens in `sentence` if there is a correspondence in the input `subtree`.
 - **Input:** a sentence (string) and a subtree (*ordered* list of strings, where each string is a token).
 - **Output:** True/False.
 
