@@ -336,3 +336,26 @@ Because by default ACS already encodes the intrinsic constraints of a discrete p
 
 - **Consider the two versions of the Knapsack problem (0/1, and with duplicates). Which of the two problems is more challenging from an optimization point of view? Why?** \
 The Knapsack with duplicates is probably the most challenging to solve, since the solution space is much larger. With the 0/1 instance the set of possible solutions (considering also non-valid solutions) is given by the set of all subsets of the items, i.e. 2^N possible solutions. Instead, with the variation with duplicates, for each possible subset of items we also have to consider each possible combination of times each item is picked, making the solution space very large.
+
+
+
+## Lab. 08 - Neuro-evolution
+
+### Exercise 1
+- **Do the same EA parameters that you used for “Or” work for “And” as well? If not, modify them until you are able to solve “And”.** \
+With a single perceptron, the model was able to solve the "Or" problem with a final best fitness of ~0.0009. The resulting network has a weight for both input connection of +8.0, while the bias is -3.85. This is because since we are using a sigmoid activation the limits the output to [0, 1], the net tries to maximize the output when a 1 is given in input, and therefore the two weights connected to the input nodes have the maximum possible weight. A negative bias instead is mainly useful when the input is [0, 0]: in this case the input nodes multiplied by their weights will result in 0, and since `sigmoid(0)=0.5`, the net tries to shift the result towards a negative value to obtain a final result close to zero. \
+In the case of the "And" problem, the network is still able to solve it, but with a resulting fitness of ~0.012. The final trained parameters are `W=[5.33, 5.34]` and `b=-8.0`. In this case, the perceptron output a positive value only if the input is `[1, 1]`, since `Wx+b = 5.33*1 + 5.34*1 - 8.00 = 2.67`. Therefore, by applying the sigmoid we are obtaining a value greater than 0.5 (i.e. closer to 1) only when the perceptron output is positive, i.e. only when the input is `[1, 1]`.
+
+- **Can you solve it (with "Xor")? If you are unable to solve it, why is that?** \
+No, the best fitness obtained is ~1.0. This is because a single perceptron is able to solve only linearly separable problems, and the "Xor" is not one of them. Only by adding an additional layer we can add non-linearity and be able to solve it.
+
+- **Does this allow you to solve the problem (adding an hidden node)? What if you change this value to 2 or more?** \
+With a single hidden node is still not possible to solve it, the best fitness achieved is still only ~0.7. This is because we are not actually adding non-linearity, since a single hidden unit would just perform a linear transformation of the output of the input perceptron. With 2 hidden units instead the network is able to solve the problem, with a best fitness of ~0.004.
+
+- **How many hidden nodes are required to solve this problem? Can you provide an explanation for why that is the case?** \
+Two hidden units seem to be enough to solve the "Xor" problem. We can see in the image below the final network obtained. \
+By making a comparison with the perceptrons obtained for the "And" and "Or" problem we can see that the first layers learns "And" and "Or" with its two units since the weight values are similar to the ones obtained in the previous points, just inverted in sign. This can be seen has the network learning `¬(A and B)` and `¬(A or B)`
+
+<div style="text-align:center">
+    <img src="img/lab08_es1_1.png" alt="Pareto front analysis" width="500"/>
+</div>
