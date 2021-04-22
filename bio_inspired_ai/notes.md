@@ -379,3 +379,20 @@ No, in this case the RNN is not able to solve the "Temporal Xor" and obtains a f
 <div style="text-align:center">
     <img src="img/lab08_es2_1.png" alt="Pareto front analysis" width="500"/>
 </div>
+
+### Exercise 3 (NEAT)
+- **First, run a single instance of each of the two configurations. What do you observe? Is the algorithm without elitism able to converge to the optimal fitness value? What about the algorithm with elitism? What is the effect of elitism on convergence? What about the number of species and their dynamics?** \
+In both cases the algorithm was able to converge to an optimal fitness, in case of "no-elitism" ~3.95 and of "elitism" ~3.96. However, while with elitism the algorithm converged at generation 37, the version without elitism took 73 generations, and if tested on multiple run was not always able to converge to a fitness greater than 3.9.
+
+- **Change the parameter num_runs to 10 or more. Does the box-plot confirm -in statistical terms- what you observed on a single run? (NOTE: it takes 1-2 minutes to execute 10 runs for both configurations.)** \
+Yes, the results over 10 runs show that the algorithm with elitism is a better choice. In particular, the average fitness with elitism is ~3.9, while without is ~3.4. Moreover, the deviation of the fitnesses obtained with elitism is much lower, showing that it obtain better results overall.
+
+### Questions
+- **What is the genotype and what is the phenotype in the problems considered in this lab?** \
+In this case the genotype would be the network architecture, while the phenotype would be the network with weights and biases values.
+
+- **Why are hidden nodes sometimes needed for a Neural Network to solve a given task? What is the defining feature of problems that networks without hidden nodes are unable to solve?** \
+Hidden nodes increase the representational power of a neural network. Each perceptron learns an hyperplane that separates the input space in two parts. Therefore, if our problem is linearly separable, a single perceptron is enough to solve it (e.g. and, or). However, with more complex problem a single perceptron may be not enough, since a single hyperplane is unable to divide a non-linear space. By implementing a Multi-Layer Perceptron these problems can be solved as well, since each layer will learn a new input representation, s.t. the last layer receive an input a linearly-separable input.
+
+- **Why are recurrent connections needed to solve certain problems? What is the defining feature of problems that networks without recurrent connections are unable to solve? Are there problems that require recurrent connections and multiple hidden nodes?** \
+When a solution to a problem depends on the previous inputs and solutions, a recurrent network is needed to implement a sort of "memory" of the last input. If we use simply a feedforward NN, this kind of memory is not present and the network may be unable to solve the problem, even with multiple layers. As explained before, multiple hidden units are required in the case of non-linearly separable problems.

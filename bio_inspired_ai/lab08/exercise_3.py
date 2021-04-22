@@ -14,7 +14,7 @@ inputs = [(0.0, 0.0), (0.0, 1.0), (1.0, 0.0), (1.0, 1.0)]
 outputs = [   (0.0,),     (1.0,),     (1.0,),     (0.0,)]
 
 num_generations = 100
-num_runs = 1
+num_runs = 10
 
 config_files = ['config-feedforward-2input-xor-noelitism.txt',
                 'config-feedforward-2input-xor-elitism.txt']
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     if num_runs == 1:
         
         # Load configuration.
-        config_file = os.path.join(local_dir, config_files[0])
+        config_file = os.path.join(local_dir, config_files[1])
         config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                              neat.DefaultSpeciesSet, neat.DefaultStagnation,
                              config_file)
