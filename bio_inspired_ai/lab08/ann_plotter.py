@@ -124,9 +124,9 @@ class ANNPlotter(object) :
             self.axes.add_patch(patch)
             
             if neuron1 == neuron2 :
-                vert = patch_verts[len(patch_verts)/2]
+                vert = patch_verts[len(patch_verts)//2]
             else :
-                vert = patch_verts[len(patch_verts)/3]
+                vert = patch_verts[len(patch_verts)//3]
             
             label_x = vert[0]
             label_y = vert[1]  
@@ -152,7 +152,7 @@ class ANNPlotter(object) :
                     dx = -0.5
                 
                 self.axes.arrow((neuron1[0]+neuron2[0])/2-0.1,
-                            patch_verts[len(patch_verts)/2-1][1]+0.05, dx, 0,
+                            patch_verts[len(patch_verts)//2-1][1]+0.05, dx, 0,
                             head_width=0.5, head_length=0.5, fc=color,
                             ec=color,length_includes_head=True,zorder=1,
                             aa=True)

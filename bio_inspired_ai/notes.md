@@ -274,7 +274,7 @@ in general es, they make the search more difficult because they introduce additi
 
 
 
-## Lab. 06 - Particle Swarm Optimization I
+## Lab. 06 - Swarm Intelligence I
 
 ### Exercise 1
 - **What is the effect of each behavior coefficient?** \
@@ -310,7 +310,7 @@ The distance-based topology seems to be most plausible if we consider the actual
 
 
 
-## Lab. 07 - Particle Swarm Optimization II
+## Lab. 07 - Swarm Intelligence II
 
 ### Exercise 1 (TSP)
 - **Which algorithm provides the best solution in most cases? What can you say about the number of function evaluations needed to converge?** \
@@ -358,4 +358,24 @@ By making a comparison with the perceptrons obtained for the "And" and "Or" prob
 
 <div style="text-align:center">
     <img src="img/lab08_es1_1.png" alt="Pareto front analysis" width="500"/>
+</div>
+
+### Exercise 2
+- **Can you solve it ("Temporal Or")? If you are unable to solve it, why is that?** \
+With `recurrent=False` no, it's not possible to solve the "Temporal Or". This is because we are using a FeedForward NN that has no way of remembering the previous inputs.
+
+- **If you set recurrent to be True, can you now evolve a successful network?** \
+Yes, in this case the network is able to solve the "Temporal Or", obtaining a best fitness of ~0.0014.
+
+- **Why might recurrence be important for solving a temporal problem such as this?** \
+In this case recurrence is important because it implement a form of "memory" of the previous inputs, that otherwise would not be considered when computing the output of a new input sample (e.g. in the case of a feedforward NN).
+
+- **Do the same EA parameters that solved “Temporal Or” also work for “Temporal And”? Why, or why not?** \
+Yes, the RNN is still able to solve the TemporalAnd, with a resulting best fitness of ~0.0012. 
+
+- **Are you able to find a successful network (for "Temporal Xor")? If not, think back to what you just saw in the previous exercise. What combination of recurrence and no. of hidden nodes is needed to solve “Temporal Xor” and why is that?** \
+No, in this case the RNN is not able to solve the "Temporal Xor" and obtains a fitness of ~0.6743. Similarly to the previous exercises, we con solve "Temporal Xor" by using 2 hidden units and maintaining recurrence. In this case, the best fitness obtained is ~0.0018. The image below shows the resulting network.
+
+<div style="text-align:center">
+    <img src="img/lab08_es2_1.png" alt="Pareto front analysis" width="500"/>
 </div>

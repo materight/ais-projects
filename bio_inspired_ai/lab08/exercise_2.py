@@ -14,11 +14,11 @@ Edit this part to do the exercises
 """
 
 # problem
-problem_class = TemporalOr
+problem_class = TemporalXor
 
 # parameters for the GA
-args["num_hidden_units"] = 1 # Number of hidden units of the neural network
-args["recurrent"] = False # Number of hidden units of the neural network
+args["num_hidden_units"] = 2 # Number of hidden units of the neural network
+args["recurrent"] = True # Number of hidden units of the neural network
 args["gaussian_stdev"] = 1.0 # Standard deviation of the Gaussian mutations
 args["crossover_rate"]  = 0.8 # Crossover fraction
 args["tournament_size"] = 2 # Tournament size
@@ -62,4 +62,5 @@ if __name__ == "__main__":
         ann_plotter.draw()
         
         ioff()
+        tight_layout()
         show()
