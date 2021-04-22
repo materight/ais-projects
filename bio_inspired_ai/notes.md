@@ -354,7 +354,7 @@ With a single hidden node is still not possible to solve it, the best fitness ac
 
 - **How many hidden nodes are required to solve this problem? Can you provide an explanation for why that is the case?** \
 Two hidden units seem to be enough to solve the "Xor" problem. We can see in the image below the final network obtained. \
-By making a comparison with the perceptrons obtained for the "And" and "Or" problem we can see that the first layers learns "And" and "Or" with its two units since the weight values are similar to the ones obtained in the previous points, just inverted in sign. This can be seen has the network learning `¬(A and B)` and `¬(A or B)`
+By making a comparison with the perceptrons obtained for the "And" and "Or" problem we can see that the first layers learns "And" and "Or" with its two units since the weight values are very similar to the ones obtained in the previous points, just inverted in sign. This can be seen has the network learning `¬(A and B)` and `¬(A or B)`. By testing some inputs only on the last layer's unit, it is clear that ti can be interpreted as `(A and ¬B)`. In the end we can see that the network has learned `¬(A and B) and ¬(¬(A or B))` which can be translated to `¬(A and B) and (A or B) = (¬A or ¬B) and (A or B) = (¬A and A) or (¬A and B) or (A and ¬B) or (¬B and B) = (¬A and B) or (A and ¬B) = A xor B`.
 
 <div style="text-align:center">
     <img src="img/lab08_es1_1.png" alt="Pareto front analysis" width="500"/>
