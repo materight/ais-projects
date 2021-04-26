@@ -31,7 +31,7 @@ while cap.isOpened():
             maxLevel = 2,
             criteria = (cv.TERM_CRITERIA_EPS | cv.TERM_CRITERIA_COUNT, 10, 0.03)
         )
-        new_corners = new_corners#[status == 1].reshape(-1,1,2)
+        new_corners = new_corners[status == 1].reshape(-1,1,2)
     
     # Plot keypoints
     new_corners = np.int0(new_corners)
