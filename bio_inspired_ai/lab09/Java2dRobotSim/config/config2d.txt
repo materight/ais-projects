@@ -1,0 +1,97 @@
+# ---- simulation parameters ---- #
+
+# angular positions of the infrared sensors (empty string for no sensors)
+basePhi = 0 45 90 135 180 225 270 315
+#basePhi = 0 90 180 270
+#basePhi =
+
+# enable distance to target
+targetDistance = true
+
+# enable bearing to target
+targetBearing = true
+
+# number of robots
+nrRobots = 1000
+
+# number of time steps per generation (10 minutes, 4Hz -> 2400)
+nrTimeStepsGen = 1200
+
+# simulation time interval (s), frequency 4Hz
+dt = 0.25
+
+# noise level on motors
+noiseLevel = 0.0
+
+# ---- neural network parameters ---- #
+
+# possible values: FFNN, ELMAN, JORDAN
+networkType = FFNN
+# possible values: SIGMOID, TANH, CLIPPED_LINEAR, CLIPPED_LINEAR_01
+activationFunction = SIGMOID
+nrHiddenNodes = 4
+
+minInput = -1
+maxInput = 1
+geneMin = -3
+geneMax = 3
+
+# ---- geometric parameters (mm) ---- #
+
+# noise level on motors
+spatialResolution = 5
+
+# size of the arena
+environmentWidth = 4000
+environmentHeigth = 4000
+
+# starting position of the robots
+startingX = 2000
+startingY = 800
+
+# target position of the robots
+targetX = 2000
+targetY = 3200
+
+# robot and robot IR range radius
+robotRadius = 35
+rangeRadius = 210
+
+# ---- graphic parameters ---- #
+
+# applet update period
+updatePeriod = 10
+# applet update delay
+updateDelay = -1
+
+# DON'T EDIT THIS LINE #
+# ---- obstacles ---- #
+
+# rectangle coordinates (mm)
+# (leftX topY widthX widthY)
+
+# walls around
+0 0 4000 200
+0 3800 4000 200
+0 0 200 4000
+3800 0 200 4000
+
+# other obstacles
+640 600 320 800
+560 2000 480 80
+960 2000 80 800
+720 2800 320 80
+3040 600 320 800
+3040 2000 320 1400
+1560 600 80 1080
+2360 600 80 1080
+1640 1120 240 80
+2120 1120 240 80
+1880 400 20 2040
+2100 400 20 2040
+1880 2440 240 20
+1566 2400 80 1400
+2360 2400 80 1400
+
+# DON'T EDIT THIS LINE #
+# ---- obstacles ---- #
