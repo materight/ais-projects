@@ -421,9 +421,9 @@ The best candidate evolved previously (that receives in input also the IR sensor
 - **Is the same fitness function you designed in the previous exercise able to guide the evolutionary search also in this case? If not, try to change it appropriately. Does the best individual evolved in this scenario generalize to the first scenario?** \
 Using the previous fitness function (`distanceToTarget/(pathLength/timestepToReachTarget)`), the best individual obtained is able to reach the target, but it takes a lot of time even if it moves quickly because the exploration is very chaotic (it moves in circles) and the robot end up trying the same path multiple times. By changing completely the approach, a very good solution (only ~35 seconds to reach the target) was obtained by using as fitness the fraction of time spent to reach the target w.r.t. the total individual lifetime (i.e. `fitness = timestepToReachTarget/self.nrTimeStepsGen`), to try to minimize it and spend as much time as possible on the target. The final best individual obtained can be seen in the image below.
 
-<div style="text-align:center">
-    <img src="img/lab09_es2_1.png" alt="Best individual path" width="500"/>
-</div>
+<p align="center">
+    <img src="img/lab09_es2_1.png" alt="Best individual path" width="350"/>
+</p>
 
 - **Try to change the starting and target positions and see if the best Neural Network you just obtained is able to generalize w.r.t. the starting/target positions.** \
 By changing the starting position to (400, 800) and the target position to (3500, 3200), it is clear that the best evolved robot is not able to generalize correctly to new situations, since it is not able to reach the target and instead keeps moving on the same paths again and again. The best individual obtained that was obtained using fitness `distanceToTarget/(pathLength/timestepToReachTarget)` instead is able to reach the target in ~130 seconds, even in with this new configuration. This is probably because it follow a circular moving pattern, favoring the exploration of the environment.
@@ -431,9 +431,9 @@ By changing the starting position to (400, 800) and the target position to (3500
 - **Try to make the problem even harder, in the attempt to find a controller that is able to drive the robot to the target without touching any walls. What kind of fitness function could you use in this case?** \
 A possible solution is to add `noOfTimestepsWithCollisions` to the fitness formula. A first approach tested was to add to the fitness a scaling factor proportional to the number of time steps with collisions, i.e. by setting `fitness = fitness * (1 + noOfTimestepsWithCollisions * 0.01)`. As can be seen in the image below, the best evolved robot was able to reach the target without touching any wall. In this case the training was done in the original environment, while the testing (shown in the image) was executed on the modified environment, with custom position for the starting point and the target.
 
-<div style="text-align:center">
-    <img src="img/lab09_es2_2.png" alt="Best individual path" width="500"/>
-</div>
+<p align="center">
+    <img src="img/lab09_es2_2.png" alt="Best individual path" width="350"/>
+</p>
 
 ### Questions
 - **What do you think it could change between a simulated and a real-world experiment in the case of a maze navigation task?** \
