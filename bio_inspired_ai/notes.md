@@ -1,6 +1,22 @@
 # Bio-Inspired Artificial Intelligence - Lab. Notes  
 
-All the experiment have been run with `seed=42`.
+**Note:** All the experiments have been run with `seed=42`.
+
+
+
+
+## Table of Contents
+
+1. [Introduction](#lab-01---Introduction)
+2. [Evolutionary Algorithms I](#lab-02---evolutionary-algorithms-i)
+2. [Evolutionary Algorithms II](#lab-03---evolutionary-algorithms-ii)
+4. [Multi-Objective Problems](#lab-04---multi-objective-problems)
+5. [Constrained Problems](#lab-05---constrained-problems)
+6. [Swarm Intelligence I](#lab-06---swarm-intelligence-i)
+7. [Swarm Intelligence II](#lab-07---swarm-intelligence-ii)
+8. [Neuro-evolution](#lab-08---neuro-evolution)
+9. [Swarm and Evolutionary Robotics](#lab-09---swarm-and-evolutionary-robotics)
+
 
 
 
