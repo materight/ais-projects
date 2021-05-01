@@ -199,9 +199,9 @@ Yes, for example a solution (found with pop_size=10 and max_gen=10) with a weigh
 - **Do you see any patterns in the Pareto-optimal solutions that may help you in designing a well-performing disk-brake in the future?** \
 The obtained Pareto front has a clear descending pattern, with an elbow at ~0.62kg that can be identified as shown in the image below. Before the elbow, the stopping time (f1) decrease rapidly with a minimum increase in the total weight (f0). An optimal approach may be to select the nearest solution to this elbow, since after that value the weight increase rapidly without any noteworthy improvement on the stopping time.
 
-<div style="text-align:center">
+<p align="center">
     <img src="img/lab04_es3_1.png" alt="Pareto front analysis" width="300"/>
-</div>
+</p>
 
 ### Questions
 - **When do you think it is appropriate to use a multi-objective evolutionary algorithm vs. combining multiple objectives into a single fitness function?** \
@@ -221,9 +221,9 @@ Some example of biological phenotypic traits that have an impact on the fitness 
 - **How do your results change from the unconstrained version (from the previous lab)?** \
 With respect to the unconstrained solution, the range of the results is much narrower (see image below). In particular, the maximum stopping time (f1) is shorter from (~16 to ~11), and the maximum weight (f0) is lower (from ~2.2 to ~1.5). Moreover, the tradeoff between the two  metrics is less "steep", i.e. it's more difficult to identify an elbow in the trade-off between weight and stopping time w.r.t. the unconstrained version, and therefore it's more difficult to identify the "best" solutions with the best trade-off in the Pareto front.
 
-<div style="text-align:center">
+<p align="center">
     <img src="img/lab05_es1_1.png" alt="Pareto front analysis" width="300"/>
-</div>
+</p>
 
 - **Do your previous parameters continue to solve the problem?** \
 Yes, the parameters used for the unconstrained version (pop_size=20, max_gen=100) obtain better results than the default ones (pop_size=10, max_gen=10).
@@ -231,9 +231,9 @@ Yes, the parameters used for the unconstrained version (pop_size=20, max_gen=100
 - **Try to increase the population size and/or the number of generations to see if you can find better solutions.** \
 By increasing the parameters values to pop_size=30 and max_gen=500 we obtain a larger choice of good solutions and the Pareto front become more visible. However, the solutions are not particularly better in terms of dominance with the previous ones. 
 
-<div style="text-align:center">
+<p align="center">
     <img src="img/lab05_es1_2.png" alt="Pareto front analysis" width="300"/>
-</div>
+</p>
 
 ### Exercise 2
 - **Do you see any difference in the GA’s behavior (and results) when the penalty is enabled or disabled?** \
@@ -356,9 +356,9 @@ With a single hidden node is still not possible to solve it, the best fitness ac
 Two hidden units seem to be enough to solve the "Xor" problem. We can see in the image below the final network obtained. \
 By making a comparison with the perceptrons obtained for the "And" and "Or" problem we can see that the first layers learns "And" and "Or" with its two units since the weight values are very similar to the ones obtained in the previous points, just inverted in sign. This can be seen has the network learning `¬(A and B)` and `¬(A or B)`. By testing some inputs only on the last layer's unit, it is clear that it can be interpreted as `(A and ¬B)`. In the end we can see that the network has learned `¬(A and B) and ¬(¬(A or B))` which can be translated to `¬(A and B) and (A or B) = (¬A or ¬B) and (A or B) = (¬A and A) or (¬A and B) or (A and ¬B) or (¬B and B) = (¬A and B) or (A and ¬B) = A xor B`.
 
-<div style="text-align:center">
+<p align="center">
     <img src="img/lab08_es1_1.png" alt="Pareto front analysis" width="500"/>
-</div>
+</p>
 
 ### Exercise 2
 - **Can you solve it ("Temporal Or")? If you are unable to solve it, why is that?** \
@@ -376,9 +376,9 @@ Yes, the RNN is still able to solve the TemporalAnd, with a resulting best fitne
 - **Are you able to find a successful network (for "Temporal Xor")? If not, think back to what you just saw in the previous exercise. What combination of recurrence and no. of hidden nodes is needed to solve “Temporal Xor” and why is that?** \
 No, in this case the RNN is not able to solve the "Temporal Xor" and obtains a fitness of ~0.6743. Similarly to the previous exercises, we con solve "Temporal Xor" by using 2 hidden units and maintaining recurrence. In this case, the best fitness obtained is ~0.0018. The image below shows the resulting network.
 
-<div style="text-align:center">
+<p align="center">
     <img src="img/lab08_es2_1.png" alt="Pareto front analysis" width="500"/>
-</div>
+</p>
 
 ### Exercise 3 (NEAT)
 - **First, run a single instance of each of the two configurations. What do you observe? Is the algorithm without elitism able to converge to the optimal fitness value? What about the algorithm with elitism? What is the effect of elitism on convergence? What about the number of species and their dynamics?** \
