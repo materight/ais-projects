@@ -46,11 +46,11 @@ environmentWidth = 4000
 environmentHeigth = 4000
 
 # starting position of the robots
-startingX = 2000
+startingX = 400
 startingY = 800
 
 # target position of the robots
-targetX = 2000
+targetX = 3500
 targetY = 3200
 
 # robot and robot IR range radius

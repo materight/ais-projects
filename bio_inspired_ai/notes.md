@@ -396,3 +396,48 @@ Hidden nodes increase the representational power of a neural network. Each perce
 
 - **Why are recurrent connections needed to solve certain problems? What is the defining feature of problems that networks without recurrent connections are unable to solve? Are there problems that require recurrent connections and multiple hidden nodes?** \
 When a solution to a problem depends on the previous inputs and solutions, a recurrent network is needed to implement a sort of "memory" of the last input. If we use simply a feedforward NN, this kind of memory is not present and the network may be unable to solve the problem, even with multiple layers. As explained before, multiple hidden units are required in the case of non-linearly separable problems.
+
+
+
+## Lab. 09 - Swarm and Evolutionary Robotics
+
+### Exercise 1
+- **Design and implement a fitness function that would allow the robot to reach the tar- get as fast as possible.** \
+Using the fitness function already implemented in the program (i.e. fitness = distance from target), the final robot is able to reach the target but it proceeds very slowly and takes ~250 seconds to reach it. To promote fast robots, an initial approach tested was to include in the fitness calculation the number of timestamps needed for the robot to reach the target. By setting the fitness to `distanceToTarget*timestepToReachTarget`, the best robot reached the target in ~180 seconds. Another approach tested was to consider instead the velocity of the robot, computed as `pathLength/timestepToReachTarget`. In this case we want to maximize the velocity, so the final fitness was `distanceToTarget/(pathLength/timestepToReachTarget)`. With this the best robot was able to reach the target in just ~35 seconds.
+
+- **Is the Evolutionary Algorithm able to evolve a Neural Network controller that can reach the target? What kind of motion strategy does it use?** \
+Yes, the EA is able to evolve a NN that can reach the target. With the custom fitness described above, the robot goes quite directly for the target, with jut an initial turn to the right. The most peculiar characteristic is that it goes backward, but since it doesn't change anything in terms of velocity, this is not a problem and therefore it is not considered n the fitness.
+
+- **What is the minimum-complexity Neural Network controller that you can think of?** \
+Since in this case we don't have obstacles, the infrared sensors' inputs are useless since they do not provide any useful information. By removing them, we obtain a network with just two inputs (distance and bearing). However just doing this decreased the final performance, since the final robot takes more time  to reach the target (~150 seconds) for some reason. By executing more tests, it is clear that it is caused by the fact that the network became too simple and it is not able to correctly encode an efficient controller. In fact, by setting the number of hidden nodes to 6, we can achieve a best robot that reaches the target in just ~40 seconds. Even if we increased the number of hidden nodes, the total number of parameters is lower: from `(10+1)*4 + (4+1)*2 = 54` to `(2+1)*6 + (6+1)*2 = 32`.
+
+- **By looking at the weights of the best evolved Neural Network in the simplest case you just found, can you try to make sense of the controller functioning?** \
+Not really, it is difficult to understand all the combinations of weights and the kind of results they produce.
+
+### Exercise 2
+- **Take the best Neural Network evolved in the previous exercise and run it in the new scenario. What happens in this case? Is the best Neural Network evolved in the previous exercise able to generalize to this new environment? Why?** \
+The best candidate evolved previously (that receives in input also the IR sensor data) was not able to reach the target in the new problem with obstacles. Since the robot learned to go directly towards the target, it tries to go downward but continues to bump on the wall and ultimately get stuck in the dead-end corridor. Therefore it is not able to generalize to more complex environments.
+
+- **Is the same fitness function you designed in the previous exercise able to guide the evolutionary search also in this case? If not, try to change it appropriately. Does the best individual evolved in this scenario generalize to the first scenario?** \
+Using the previous fitness function (`distanceToTarget/(pathLength/timestepToReachTarget)`), the best individual obtained is able to reach the target, but it takes a lot of time even if it moves quickly because the exploration is very chaotic (it moves in circles) and the robot end up trying the same path multiple times. By changing completely the approach, a very good solution (only ~35 seconds to reach the target) was obtained by using as fitness the fraction of time spent to reach the target w.r.t. the total individual lifetime (i.e. `fitness = timestepToReachTarget/self.nrTimeStepsGen`), to try to minimize it and spend as much time as possible on the target. The final best individual obtained can be seen in the image below.
+
+<div style="text-align:center">
+    <img src="img/lab09_es2_1.png" alt="Best individual path" width="500"/>
+</div>
+
+- **Try to change the starting and target positions and see if the best Neural Network you just obtained is able to generalize w.r.t. the starting/target positions.** \
+By changing the starting position to (400, 800) and the target position to (3500, 3200), it is clear that the best evolved robot is not able to generalize correctly to new situations, since it is not able to reach the target and instead keeps moving on the same paths again and again. The best individual obtained that was obtained using fitness `distanceToTarget/(pathLength/timestepToReachTarget)` instead is able to reach the target in ~130 seconds, even in with this new configuration. This is probably because it follow a circular moving pattern, favoring the exploration of the environment.
+
+- **Try to make the problem even harder, in the attempt to find a controller that is able to drive the robot to the target without touching any walls. What kind of fitness function could you use in this case?** \
+A possible solution is to add `noOfTimestepsWithCollisions` to the fitness formula. A first approach tested was to add to the fitness a scaling factor proportional to the number of time steps with collisions, i.e. by setting `fitness = fitness * (1 + noOfTimestepsWithCollisions * 0.01)`. As can be seen in the image below, the best evolved robot was able to reach the target without touching any wall. In this case the training was done in the original environment, while the testing (shown in the image) was executed on the modified environment, with custom position for the starting point and the target.
+
+<div style="text-align:center">
+    <img src="img/lab09_es2_2.png" alt="Best individual path" width="500"/>
+</div>
+
+### Questions
+- **What do you think it could change between a simulated and a real-world experiment in the case of a maze navigation task?** \
+The first thing that comes to mind is possible drag on the robot's wheels, due to friction with the floor that is not accounted in the simulation. The motors might also be inaccurate when turning for a certain amount, and this could correspond to a misalignment between the robot's control intention and the actual movement. The same issue with accuracy is present with any of the sensors used as input, since the final Neural Network may not be able to generalize to take in account noise on the input.
+
+- **Can you think of some possible applications where a maze navigation robot task could be used? Why would it make sense to use Swarm/Evolutionary Robotics in those cases?** \
+I think there are a lot of possible real-world scenarios for this kind of robots, for example for moving goods in a warehouse, or in an automatic sorting center. In those cases using Swarm robotics may be essential, since a warehouse might have hundreds of robots working together at the same time, so they must communicate in some way to avoid collisions and optimize the tasks distribution.

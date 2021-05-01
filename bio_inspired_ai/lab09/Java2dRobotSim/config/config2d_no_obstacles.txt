@@ -3,7 +3,7 @@
 # angular positions of the infrared sensors (empty string for no sensors)
 basePhi = 0 45 90 135 180 225 270 315
 #basePhi = 0 90 180 270
-#basePhi =     
+#basePhi =
 
 # enable distance to target
 targetDistance = true

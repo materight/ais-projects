@@ -1,0 +1,1 @@
+grant codeBase "file:///Users/mdestro/Desktop/ais_projects/bio_inspired_ai/lab09/Java2dRobotSim/-" { permission java.security.AllPermission; };

@@ -26,7 +26,7 @@ Edit this part to do the exercises
 display = True
 
 # possible options: config2d.txt, config2d_no_obstacles.txt
-config_file = "config2d_no_obstacles.txt"
+config_file = "config2d.txt"
 
 popSize = 50                # population size
 numGen = 50                 # used with generation_termination
@@ -142,7 +142,8 @@ class RobotEvaluator():
             timestepsOnTarget = results[i][4]
             #TODO: change here the fitness function
             #NOTE: you can also use self.nrTimeStepsGen to get the robot lifetime in a generation (no. of timesteps)
-            fitness_i = distanceToTarget
+            fractionTsToReachTarget = timestepToReachTarget / self.nrTimeStepsGen
+            fitness_i = distanceToTarget/(pathLength/timestepToReachTarget) * (1 + noOfTimestepsWithCollisions*0.01)
             fitness.append(fitness_i)
         
         if not os.path.exists(str(seed)):
