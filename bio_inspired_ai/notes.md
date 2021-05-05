@@ -428,7 +428,7 @@ Yes, the EA is able to evolve a NN that can reach the target. With the custom fi
 Since in this case we don't have obstacles, the infrared sensors' inputs are useless since they do not provide any useful information. By removing them, we obtain a network with just two inputs (distance and bearing). However just doing this decreased the final performance, since the final robot takes more time  to reach the target (~150 seconds) for some reason. By executing more tests, it is clear that it is caused by the fact that the network became too simple and it is not able to correctly encode an efficient controller. In fact, by setting the number of hidden nodes to 6, we can achieve a best robot that reaches the target in just ~40 seconds. Even if we increased the number of hidden nodes, the total number of parameters is lower: from `(10+1)*4 + (4+1)*2 = 54` to `(2+1)*6 + (6+1)*2 = 32`.
 
 - **By looking at the weights of the best evolved Neural Network in the simplest case you just found, can you try to make sense of the controller functioning?** \
-Not really, it is difficult to understand all the combinations of weights and the kind of results they produce.
+Not really, it is difficult to understand all the combinations of weights and the kind of results they produce since there a lot of values that should be considered.
 
 ### Exercise 2
 - **Take the best Neural Network evolved in the previous exercise and run it in the new scenario. What happens in this case? Is the best Neural Network evolved in the previous exercise able to generalize to this new environment? Why?** \
@@ -457,3 +457,25 @@ The first thing that comes to mind is possible drag on the robot's wheels, due t
 
 - **Can you think of some possible applications where a maze navigation robot task could be used? Why would it make sense to use Swarm/Evolutionary Robotics in those cases?** \
 I think there are a lot of possible real-world scenarios for this kind of robots, for example for moving goods in a warehouse, or in an automatic sorting center. In those cases using Swarm robotics may be essential, since a warehouse might have hundreds of robots working together at the same time, so they must communicate in some way to avoid collisions and optimize the tasks distribution.
+
+
+
+## Lab. 10 - Competitive Co-Evolution
+
+### Exercise 1
+- **Try out different parameter combinations of `numOpponents`, `archiveType`, `archiveUpdate`, and `updateBothArchives`, and observe what kind of robot behavior is evolved. Can you find cases where the prey “wins”? Can you find cases where the predator “wins”?** \
+
+- **Try to change the fitness formulation and observe what kind of behavior is evolved.** \
+
+- **Try to change the EA’s and FFNN’s parameters to see if/how results change depending on those values.** \
+
+
+### Exercise 2
+- **Is the co-evolutionary algorithm able to evolve an optimal (without sorting errors) SN, in the default configuration?** \
+
+- **Try to investigate this problem in different configurations. In particular, focus on the effect of the size of the input sequences (INPUTS), the number of input sequences per parasite (P_NUM_SEQ), and the two population sizes (POP_SIZE_HOSTS and POP_SIZE_PARASITES). If needed, also change the size of the Hall-of-Fame (HOF_SIZE) and the number of generations (MAXGEN). What conclusions can you draw? For instance: What makes the problem harder? What is the effect of P_NUM_SEQ? What can you do to solve the harder problem instances?** \
+
+### Questions
+- **Can you provide some example applications where you think a competitive co-evolution approach could be used?** \
+
+- **Can you think of some other competitive co-evolutionary dynamics in nature different from the prey-predator case?** \
