@@ -43,9 +43,9 @@ selectionSize = popSize     # selection size (i.e. how many individuals are sele
 numElites = 1               # no. of elites (i.e. best individuals that are kept in the population)
 
 # parameters for competitive coevolution
-numOpponents = 1            # number of opponents against which each robot competes at each generation
-archiveType = "BEST"        # possible types: {GENERATION,HALLOFFAME,BEST}
-archiveUpdate = "WORST"     # possible types: {WORST,AVERAGE}
+numOpponents = 5            # number of opponents against which each robot competes at each generation
+archiveType = "HALLOFFAME"        # possible types: {GENERATION,HALLOFFAME,BEST}
+archiveUpdate = "AVERAGE"     # possible types: {WORST,AVERAGE}
 updateBothArchives = False  # True is each generation should update both archives, False otherwise
 
 # 1. Generational competition: the archive is filled with the best individuals from previous n generations (e.g. n=5)
@@ -111,7 +111,7 @@ class ArchiveSolutions():
 
     def getIndexesOfOpponents(self,numOpponents):
         archiveSize = len(self.candidates)
-        indexes = range(archiveSize)
+        indexes = list(range(archiveSize))
         shuffle(indexes)
         numOpponents = min(numOpponents,archiveSize)
         return indexes[0:numOpponents]
@@ -335,15 +335,16 @@ class RobotEvaluator():
             finalDistanceToTarget = results[i][0]
             minDistanceToTarget = results[i][1]
             timeToContact = results[i][2]
-            fitnessTmp.append(minDistanceToTarget)
-            """
+            #fitnessTmp.append(minDistanceToTarget)
+            #fitnessTmp.append((minDistanceToTarget+0.01) * timeToContact)
+            #fitnessTmp.append(timeToContact)
             if i < numRobots/2:
                 # preys
                 fitnessTmp.append(minDistanceToTarget)
             else:
                 # predators
                 fitnessTmp.append(timeToContact)
-            """
+            
 
         # update fitness and archives
         fitness_preys = []

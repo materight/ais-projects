@@ -16,6 +16,7 @@
 7. [Swarm Intelligence II](#lab-07---swarm-intelligence-ii)
 8. [Neuro-evolution](#lab-08---neuro-evolution)
 9. [Swarm and Evolutionary Robotics](#lab-09---swarm-and-evolutionary-robotics)
+10. [Competitive Co-Evolution](#lab-10---competitive-co-evolution)
 
 
 
@@ -464,11 +465,19 @@ I think there are a lot of possible real-world scenarios for this kind of robots
 
 ### Exercise 1
 - **Try out different parameter combinations of `numOpponents`, `archiveType`, `archiveUpdate`, and `updateBothArchives`, and observe what kind of robot behavior is evolved. Can you find cases where the prey “wins”? Can you find cases where the predator “wins”?** \
+With default fitness function (i.e. prey/predator maximizing/minimizing the `minDistanceToTarget`) and default parameters (i.e. `numOpponents`=1, `archiveType`=BEST, `archiveUpdate`=WORST, `updateBothArchives`=False), the resulting prey keeps spinning in a corner, while the predator remains stuck in the opposite corner. This is an optimal situation for the prey, but not for the predator, which has no chance of catching the prey. \
+By increasing `numOpponents` to 10, the resulting predator presents a better behavior: it begins by remaining still in a corner, then after ~50 time-steps it starts to move towards the prey. After the prey escaped, it starts to move around the room, always going towards the corners. In this case, the prey is is till winning: it remains always in one of the corner, and as soon as the predator become closer it quickly moves to another adjacent corner. \
+By also changing the `archiveType` to GENERATIONAL, the predator is finally able to win. In this case, it's the prey that presents a suboptimal behavior, since it moves very slowly along one of the edges, while the predator goes almost immediately towards the prey and it is able to catch it within the first ~60 time-steps. \
+With the HALLOFFAME archive, the results are basically identical to the ones obtained with the BEST archive type: the predator stays still in a corner for the initial ~100 time-steps, while the prey moves very slowly along an edge. But in this case, the predator at some points starts to move and go quickly towards the prey, catching it. \
+Using the AVERAGE archive update type, we obtain the best predator so far: it goes directly towards the prey, without waiting. The prey however remains still in a corner, and do not even try to escape the predator. \
+By looking at the archives at each generation, it seems that the main issue with the results are due to the fitness function: using the `minDistanceToTarget` as fitness is not very informative when he predator is able to catch the prey, since in this case all the individuals inserted in the archive obtain a final fitness of zero. 
 
 - **Try to change the fitness formulation and observe what kind of behavior is evolved.** \
-
-- **Try to change the EA’s and FFNN’s parameters to see if/how results change depending on those values.** \
-
+The previous experiments were all run using a fitness equal to `minDistanceToTarget`. The following experiments were all run using as parameters: `numOpponents`=1, `archiveType`=BEST, `archiveUpdate`=WORST, `updateBothArchives`=False. \
+The first alternative tried is setting the fitness to `minDistanceToTarget*timeToContact`: by doing this we are trying to consider also the total time the predators took to reach the prey. The predator is still minimizing, while the prey maximizing the fitness. Unfortunately the results were the same of the ones obtained using only the minimum distance. \
+As mentioned before, one issue may be given by the fact that `minDistanceToTarget` is zero when the predator catch the prey, so it does not give any additional information of the performance of the predator in the "catching process". To solve this, the fitness was set to `(minDistanceToTarget+0.01)*timeToContact` to be able to maintain the time information even when minDistanceToTarget=0, so that we can favor predators that reach the prey quickly (or preys that are able to escape the predator for more time). The resulting best predator is quicker than the previous ones, but shows the same behavior, while the prey does not show any improvement, and it remains stuck in one angle until it gets caught. \
+Another possible approach is to set the fitness to just `timeToContact`, in order to incentivate quicker predators and preys. However the results showed similar results as the previous ones, with the only difference that the prey in this case starts to move, but it's very slow and it is ultimately caught by the predator. \
+The last approach tried is to use as fitness `minDistanceToTarget` for preys and `timeToContact` for predators, in order to obtain preys that are able to keep the distance from the predators, and predators that are in turn able to catch the preys quickly. With this configuration we finally obtain two individuals that are able to compete in an "optimal" way for both parts: the prey moves around the edges of the room, escaping the predator that tries to reach the prey by following it in circles, and occasionally trying to go diagonal to anticipate the prey. However, the prey is ultimately able to escape the predator.
 
 ### Exercise 2
 - **Is the co-evolutionary algorithm able to evolve an optimal (without sorting errors) SN, in the default configuration?** \
