@@ -35,16 +35,16 @@ import sortingnetwork as sn
 Edit this part to do the exercises
 """
 
-INPUTS = 5                  # length of the input sequence to sort
+INPUTS = 10                  # length of the input sequence to sort
 POP_SIZE_HOSTS = 300        # population size for hsots
 POP_SIZE_PARASITES = 300    # population size for parasites
-HOF_SIZE = 1                # size of the Hall-of-Fame
-MAXGEN = 50                 # number of generations
-H_CXPB, H_MUTPB = 0.5, 0.3  # crossover and mutation probability for hosts
-P_CXPB, P_MUTPB = 0.5, 0.3  # crossover and mutation probability for parasites
+HOF_SIZE = 10              # size of the Hall-of-Fame
+MAXGEN = 100                # number of generations
+H_CXPB, H_MUTPB = 0.5, 0.5  # crossover and mutation probability for hosts
+P_CXPB, P_MUTPB = 0.5, 0.5  # crossover and mutation probability for parasites
 H_TRNMT_SIZE = 3            # tournament size for hosts
 P_TRNMT_SIZE = 3            # tournament size for parasites
-P_NUM_SEQ = 20              # number of shuffled sequences for each parasite
+P_NUM_SEQ = 100              # number of shuffled sequences for each parasite
 
 """
 -------------------------------------------------------------------------
