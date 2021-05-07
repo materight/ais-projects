@@ -17,7 +17,7 @@
 8. [Neuro-evolution](#lab-08---neuro-evolution)
 9. [Swarm and Evolutionary Robotics](#lab-09---swarm-and-evolutionary-robotics)
 10. [Competitive Co-Evolution](#lab-10---competitive-co-evolution)
-
+11. [Genetic Programming](#lab-11---genetic-programming)
 
 
 
@@ -494,3 +494,9 @@ The first example that comes to mind is similar to what seen during the lecture,
 
 - **Can you think of some other competitive co-evolutionary dynamics in nature different from the prey-predator case?** \
 An example may be the plant-herbivore case, where plants evolve to defend from the herbivores, e.g. developing fruits with harder shells.
+
+
+
+## Lab. 11 - Genetic Programming
+
+### Exercise 1
