@@ -500,3 +500,24 @@ An example may be the plant-herbivore case, where plants evolve to defend from t
 ## Lab. 11 - Genetic Programming
 
 ### Exercise 1
+- **Is the GP algorithm able to approximate the given polynomial, with the standard configuration? What happens when you run the script multiple times? Do you always obtain the same results, or not? Why?** \
+Yes, with the default parameters the GP algorithm is able to reproduce an individual that encodes perfectly the target function. In particular, when using `seed=42`, the resulting function is `f(x) = (x*((x*(x*x+1))+(x*x)))+x = x^4+x^3+x^2+x` with an average size of ~15 nodes. \
+By running the algorithm multiple times (with different seeds) however the results can change. For instance, with a `seed=2`, the minimum fitness obtained is 0.006, and the resulting function is very different from the previous one: `f(x) = (((((((x*x/x)*(x*x/x))/x)/cos((x*x/x)))+(x*x))*x)+x) = x^3+x^2/cos(x)+x`, with an average size of ~17. This is probably because the search space is very large, and the GP algorithm is not always able to find the best solution, but gets stuck in a local minima. \
+If we run again the algorithm with `seed=3`, we obtain again the optimum solution, but encoded with a different tree: `f(x) = (((x*(1+x))*x)-(-x-1))*x = x^4+x^3+x^2+x`.
+
+- **Try to change the generator function (e.g. to include trigonometric functions) defined in the method generatorFunction. Is the GP algorithm able to approximate more complicated generator functions? Which parameters can you change to improve the results?** \
+The first test was run using as generation function `sin(x)+cos(x)` and `seed=42`. In this case the GP was able to generate the exact function (without additional useless nodes) without problems, since the generator's tree is pretty simple, with just 3 functional nodes. \
+Same results were obtained using `sin(x)*x^2` as generator: again the GP algorithm was able to recreate the exact function with the minimum number of functional nodes required (3). \
+Same results obtained using `sin(x)+5*x^2`, in this case using `seed=2`, since the execution with `seed=42` was not able to obtain a zero fitness. \
+After some tests, a difficult example was found using the function `cos(sin(x))^2 + sin(x)*x^2`. For example, the best solution found after multiple tests (using `seed=5`), was `f(x) = cos(x^2 - (x+0))` with a fitness of ~0.02. By changing some parameters, in particular `GP_POP_SIZE=500` and `GP_NGEN=100`, and running the algorithm multiple times, the GP algorithm gave ultimately a very good approximation of the generator, but not the exact one: `f(x) = cos(x) + sin(x)*x^2` that obtained a fitness of ~0.0008. \
+
+### Exercise 2
+- **What kind of performance do you get, in general, on the tested problems? What happens when you change the parametrization of GP?**
+TODO
+
+### Questions
+- **What are the main strengths and limitations of GP, in your opinion?** \
+The main strength is certainly the interpretability of the evolved model, something that for example a neural network is not able to provide. The main limitation in my opinion is that we need to know in advance all the operators and symbols we are going to use in the final function. If we miss some of the required functional operators, we may not be able to obtain a tree that gives satisfactory results.
+
+- **In which kind of applications do you think that GP could be more useful than other kinds of black-box Machine Learning techniques, such as Neural Network? Why?** \
+In all the applications that requires interpretability of the models, in particular when the output of the model can have impactful consequences on the lives of individuals, and therefore an explanation of the process for which a certain result was obtained is fundamental, e.g. credit score estimation, predictive justice, medical diagnosis... In these fields, a simple result may be not enough since human supervision is always required.

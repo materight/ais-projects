@@ -76,7 +76,8 @@ def generatorFunction(x):
     #return math.sin(x)+math.cos(x)
     #return math.sin(x)*x**2
     #return math.sin(x)+5*x**2
-    return x**4 + x**3 + x**2 + x
+    #return x**4 + x**3 + x**2 + x
+    return math.cos(math.sin(x))**2 + math.sin(x) * x**2 
 
 def evalSymbReg(individual, points):
     # Transform the tree expression in a callable function
@@ -118,7 +119,7 @@ def main(seed):
     # plot GP tree
     import plot_utils as plot_utils
     nodes, edges, labels = gp.graph(hof[0])
-    plot_utils.plotTree(nodes,edges,labels,sys.argv[0][0:-3]+'_'+str(seed),'results')
+    plot_utils.plotTree(nodes,edges,labels,'exercise_symbreg_'+str(seed),'results')
     
     #--------------------------------------------------------------------
     
@@ -150,7 +151,7 @@ def main(seed):
     folder = 'results'
     if folder is not None and not os.path.exists(folder):
         os.makedirs(folder)
-    name = sys.argv[0][0:-3]+'_'+str(seed)
+    name = 'exercise_symbreg_'+str(seed)
     plt.savefig(folder+'/'+'trends_'+name+'.png')
 
     # plot real vs approximated values
@@ -169,7 +170,7 @@ def main(seed):
     
     #--------------------------------------------------------------------
     
-    print("Best individual GP is %s, %s" % (hof[0], hof[0].fitness.values))
+    print("Best individual GP is %s, with fitness: %s" % (hof[0], hof[0].fitness.values))
 
     return final_pop, logbook, hof
 

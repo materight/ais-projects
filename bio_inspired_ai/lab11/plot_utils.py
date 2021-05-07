@@ -38,6 +38,7 @@ def plotTree(nodes,edges,labels,name,folder=None):
         for i in nodes:
             n = g.get_node(i)
             n.attr['label'] = labels[i]
+        print(folder+'/'+'tree_'+name+'.pdf')
         g.draw(folder+'/'+'tree_'+name+'.pdf')
 
     if importModule('networkx'):
