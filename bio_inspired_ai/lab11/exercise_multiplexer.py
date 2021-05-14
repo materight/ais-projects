@@ -33,11 +33,11 @@ from deap import gp
 Edit this part to do the exercises
 """
 
-GP_POP_SIZE = 40                # population size for GP
+GP_POP_SIZE = 100                # population size for GP
 GP_NGEN = 40                    # number of generations for GP
-GP_CXPB, GP_MUTPB = 0.8, 0.1    # crossover and mutation probability for GP
+GP_CXPB, GP_MUTPB = 0.9, 0.3    # crossover and mutation probability for GP
 GP_TRNMT_SIZE = 7               # tournament size for GP
-GP_HOF_SIZE = 1                 # size of the Hall-of-Fame for GP
+GP_HOF_SIZE = 5                 # size of the Hall-of-Fame for GP
 
 MUX_SELECT_LINES = 3            # number of select lines
 

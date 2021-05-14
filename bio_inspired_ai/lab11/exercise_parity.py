@@ -35,11 +35,11 @@ Edit this part to do the exercises
 
 GP_POP_SIZE = 300               # population size for GP
 GP_NGEN = 40                    # number of generations for GP
-GP_CXPB, GP_MUTPB = 0.5, 0.2    # crossover and mutation probability for GP
-GP_TRNMT_SIZE = 3               # tournament size for GP
-GP_HOF_SIZE = 1                 # size of the Hall-of-Fame for GP
+GP_CXPB, GP_MUTPB = 0.8, 0.2    # crossover and mutation probability for GP
+GP_TRNMT_SIZE = 7               # tournament size for GP
+GP_HOF_SIZE = 3                 # size of the Hall-of-Fame for GP
 
-PARITY_FANIN_M = 6              # input size of the Parity problem
+PARITY_FANIN_M = 8              # input size of the Parity problem
 
 """
 -------------------------------------------------------------------------
