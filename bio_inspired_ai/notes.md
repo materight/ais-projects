@@ -509,11 +509,11 @@ If we run again the algorithm with `seed=3`, we obtain again the optimum solutio
 The first test was run using as generation function `sin(x)+cos(x)` and `seed=42`. In this case the GP was able to generate the exact function (without additional useless nodes) without problems, since the generator's tree is pretty simple, with just 3 functional nodes. \
 Same results were obtained using `sin(x)*x^2` as generator: again the GP algorithm was able to recreate the exact function with the minimum number of functional nodes required (3). \
 Same results obtained using `sin(x)+5*x^2`, in this case using `seed=2`, since the execution with `seed=42` was not able to obtain a zero fitness. \
-After some tests, a difficult example was found using the function `cos(sin(x))^2 + sin(x)*x^2`. For example, the best solution found after multiple tests (using `seed=5`), was `f(x) = cos(x^2 - (x+0))` with a fitness of ~0.02. By changing some parameters, in particular `GP_POP_SIZE=500` and `GP_NGEN=100`, and running the algorithm multiple times, the GP algorithm gave ultimately a very good approximation of the generator, but not the exact one: `f(x) = cos(x) + sin(x)*x^2` that obtained a fitness of ~0.0008. \
+After some tests, a difficult example was found using the function `cos(sin(x))^2 + sin(x)*x^2`. For example, the best solution found after multiple tests (using `seed=5`), was `f(x) = cos(x^2 - (x+0))` with a fitness of ~0.02. By changing some parameters, in particular `GP_POP_SIZE=500` and `GP_NGEN=100`, and running the algorithm multiple times, the GP algorithm gave ultimately a very good approximation of the generator, but not the exact one: `f(x) = cos(x) + sin(x)*x^2` that obtained a fitness of ~0.0008.
 
 ### Exercise 2
-- **What kind of performance do you get, in general, on the tested problems? What happens when you change the parametrization of GP?**
-TODO
+- **What kind of performance do you get, in general, on the tested problems? What happens when you change the parametrization of GP?** \
+
 
 ### Questions
 - **What are the main strengths and limitations of GP, in your opinion?** \

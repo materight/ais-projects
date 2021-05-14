@@ -152,7 +152,7 @@ def main(seed):
     # plot GP tree
     import plot_utils as plot_utils
     nodes, edges, labels = gp.graph(best_gp)
-    plot_utils.plotTree(nodes,edges,labels,sys.argv[0][0:-3]+'_'+str(seed),'results')
+    plot_utils.plotTree(nodes,edges,labels,'exercise_symbreg_coev_'+str(seed),'results')
     
     #--------------------------------------------------------------------
 

@@ -132,10 +132,10 @@ def main(seed):
     # plot GP tree
     import plot_utils as plot_utils
     nodes, edges, labels = gp.graph(hof[0])
-    plot_utils.plotTree(nodes,edges,labels,sys.argv[0][0:-3]+'_'+str(seed),'results')
+    plot_utils.plotTree(nodes,edges,labels,'exercise_spambase_'+str(seed),'results')
     
     # plot fitness trends
-    plot_utils.plotTrends(logbook,sys.argv[0][0:-3]+'_'+str(seed),'results')
+    plot_utils.plotTrends(logbook,'exercise_spambase_'+str(seed),'results')
     
     #--------------------------------------------------------------------
     
