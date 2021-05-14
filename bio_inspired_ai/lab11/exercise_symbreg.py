@@ -75,9 +75,9 @@ toolbox.register("compile", gp.compile, pset=pset)
 def generatorFunction(x):
     #return math.sin(x)+math.cos(x)
     #return math.sin(x)*x**2
-    #return math.sin(x)+5*x**2
+    return math.sin(x) + 5 * (x**2)
     #return x**4 + x**3 + x**2 + x
-    return math.cos(math.sin(x))**2 + math.sin(x) * x**2 
+    #return math.cos(math.sin(x))**2 + math.sin(x) * x**2 
 
 def evalSymbReg(individual, points):
     # Transform the tree expression in a callable function

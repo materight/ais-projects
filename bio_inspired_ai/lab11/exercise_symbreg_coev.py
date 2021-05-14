@@ -37,7 +37,7 @@ GA_POP_SIZE = 200               # population size for GA
 GP_POP_SIZE = 200               # population size for GP
 NGEN = 50                       # number of generations (for both GA and GP)
 GA_TRNMT_SIZE = 3               # tournament size for GA
-GA_REP_IND = 10                 # number of arrays for each GA individual
+GA_REP_IND = 30                 # number of arrays for each GA individual
 GA_CXPB, GA_MUTPB = 0.5, 0.2    # crossover and mutation probability for GA
 GP_CXPB, GP_MUTPB = 0.5, 0.2    # crossover and mutation probability for GP
 
@@ -163,7 +163,7 @@ def main(seed):
     folder = 'results'
     if folder is not None and not os.path.exists(folder):
         os.makedirs(folder)
-    name = sys.argv[0][0:-3]+'_'+str(seed)
+    name = 'exercise_symbreg_coev_'+str(seed)
     
     gen = numpy.array(logbook.select("gen"))
     fit_type = numpy.array(logbook.select("type"))
