@@ -49,7 +49,7 @@ print('Homography matrix:\n', H)
 warped_obj = cv.warpPerspective(img_obj2, H, (img_scene2.shape[1], img_scene2.shape[0]))
 
 # Apply threshold to get black colors
-warped_mask = cv.inRange(warped_obj, 0, 1)
+warped_mask = cv.inRange(warped_obj, 0, 0)
 
 # Stitch image using the warped mask
 img_stitch = img_scene2.copy()
