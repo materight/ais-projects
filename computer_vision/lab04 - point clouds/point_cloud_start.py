@@ -107,5 +107,17 @@ if __name__ == "__main__":
 	ind = np.where(dists > 0.0001)[0] # Keep pints that does not have a small distance w.r.t to the ears' points
 	bunny_no_ears = pcd.select_by_index(ind)
 
+	# Outliers detection
+	#cl, ind = pcd.remove_statistical_outlier(nb_neighbors=100, std_ratio=1.0)
+	cl, ind = pcd.remove_radius_outlier(nb_points=50, radius=0.005)
+	#display_outlier(pcd, ind)
+
+	# Surface reconstruction
+	radii = [0.005]
+	mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(pcd, o3d.utility.DoubleVector(radii))
+	mesh.compute_vertex_normal()
+	o3d.visualization.draw_geometries([mesh])
+
+
 	# Display point clouds
 	o3d.visualization.draw_geometries([bunny_no_ears])
