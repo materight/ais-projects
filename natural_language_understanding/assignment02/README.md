@@ -2,8 +2,8 @@
 Student: **Destro Matteo (221222)**
 
 ## Requirements
-Install [spaCy](https://spacy.io/) and additional dependencies:
-- run `pip install spacy pandas tqdm`
+Install [spaCy](https://spacy.io/) and the additional required dependencies:
+- run `pip install spacy pandas scikit-learn tqdm`
 - run `python -m spacy download en_core_web_sm` to install the English model
 
 ## Run
