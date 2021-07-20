@@ -120,20 +120,20 @@ An high selection pressure can obtain a faster convergence, since we exploit onl
 
 ### Exercise 1
 - **What happens if you make λ smaller e.g. λ = μ?** \
-By decreasing λ (and maintaining the number of evaluations constant by increasing the "max_generations" param accordingly) we obtain a faster convergence speed, while the results in the long run remain quite stable across the different values of λ.
+By decreasing λ (and maintaining the number of evaluations constant by increasing the "max_generations" param accordingly) we obtain a faster convergence speed, while the results in the long run remain quite stable across the different values of λ. This is probably because we are favoring exploitation against exploration, and the problem has a single optima, even if it's represented by a valley.
 
 - **What happens if you increase the mixing number ρ?** \
-By increasing the mixing number ρ, the overall fitness is better (lower) and the convergence speed is much faster. This is probably because we are using more parents, increasing the variability of the generated offspring.
+By increasing the mixing number ρ, the overall fitness is better (lower) and the convergence speed is much faster. This is probably because we are using more parents for creating new individuals, increasing the variability of the generated offspring. However, it must be noted that the results greatly vary between different runs: for instance, by setting ρ=2 and λ=100 the algorithm achieved a minimum best fitness value of 69.61 and a maximum value of 241.67.
 
 - **Try out the different strategy modes and observe how they affect the performance of the algorithm** \
-The results changes based on the value of ρ. With a ρ=1, between None (no self-adaptation), Global and Individual strategies, Global gives the better results by a factor of 50 w.r.t. the Individual strategy. However, if we increase the value of ρ s.t. ρ>1, e.g. ρ=5, the Individual strategy obtain the best performances overall, by a factor of 10 w.r.t. the Global, while the performance of the None strategy are far behind (fitness = ~143 against ~0.02 of Individual). 
+The results changes greatly based on the value of ρ. With a ρ=1, between None (no self-adaptation), Global and Individual strategies, Global gives the best results by a factor of 50 w.r.t. the Individual strategy. However, if we increase the value of ρ s.t. ρ>1, e.g. ρ=5, the Individual strategy obtains the best performances overall, by a factor of 10 w.r.t. the Global strategy, while the performance of the None strategy are far behind (fitness=~143 against ~0.02 of Individual). In general, the Individual strategy with a value of ρ>1 performs better than the other combinations.
 
 ### Exercise 2
 - **How does the self-adaptation strategy influence performance on this problem?** \
-As mentioned before, None, Global and Individual obtain increasingly better results (in this order) with a ρ>1.
+As mentioned before, None, Global and Individual obtain increasingly better results (in this order) when using a ρ>1, confirming the previous observations. The Individual strategy performs better because it is able to evolve different mutation step-sizes according to the problem we are optimizing, guiding the search towards good regions of the search space more precisely.
 
 - **Does what you see here confirm what you suspected from the previous exercise?** \
-Yes, as mentioned above.
+Yes, for the reasons mentioned above.
 
 - **How do the values of μ, ρ, and λ influence the performance given a particular self-adaptation strategy and other parameters?** \
 With ρ=1, the Global self-adaptation strategy gives the best results, while with ρ>1 the Individual strategy seems to be the best choice.
@@ -151,23 +151,27 @@ After some testing, the parameters that gives the best results across different 
 
 ### Exercise 3
 - **Can CMA-ES find optima to different problems with fewer function evaluations?** \
-TODO
+Yes, but it depends largely on the hyper-parameters used. For example, it seems that CMA-ES works better with a smaller value of λ, in particular when λ=μ the algorithm seems to converge very rapidly, for all the three problems. If instead  λ >> μ, for instance λ=200 and μ=100, the algorithm converges slower and needs more evaluations to obtain similar results. In this case, a strange behavior can be observed (see the image below), where there is an increase in the average fitness for a certain number of generations from the initial state, probably because a good covariance matrix to sample from may take a while before being discovered.
+
+<p align="center">
+    <img src="img/lab03_es3_1.png" alt="Fitness evaluation of CMA-ES" width="300"/>
+</p>
 
 - **How do these differences change with different pop. sizes and problem dimensions?** \
-TODO
+Some considerations are already stated in the previous answer. Regarding the population size (μ), it seems that a small population (e.g. μ=20 vs 100) is still able to obtain good solutions, while converging faster and taking much less generations to converge to an optima. Regarding the problem dimensions,It greatly affects the fitness of the best solution found at the end of the runs: with large dimensions the best fitness is larger (worse). For instance, with Rosenbrock, using dimensions of 10, 20 and 30 variables lead to obtain a best fitness of respectively 2.9, 15.9 and 32.8. However, it depends again on the problem we are optimizing: for example, with Sphere the algorithm is able to reach the global optima obtain the minimum fitness value of 0 in all cases (10D, 20D and 30D).
 
 ### Questions
 - **Do the observations you made while varying μ, ρ, and λ confirm or contradict the conclusions you drew last week?** \
 TODO
 
 - **What are the advantages of self-adaptation in evolutionary computation?** \
-TODO
+The main advantage is that self-adaptation is that we don't need to manually select a value for the mutation step-sizes, but the best values are automatically discovered. Moreover, it is beneficial to have different mutation step-sizes at different steps of the evolution process, both in terms of number of generations and distance from the local minima: it improves exploitation at later stages and when in a good region of the search space.
 
 - **In what ways might self-adaptation be occurring in biological organisms?** \
-TODO
+If an organism find itself in a unfavorable environment, a higher mutation rate is probably promoted since it may increase the adaptivity of an individual. However, this largely depends on what affects the mutation rate of DNA. A mutation in a biological organism can happens consequently to a transcription error. If it's DNA itself that determines the DNA repair process, then it may be possible to identify in this component the equivalent of the mutation step-size of ES. However, while in ES the mutations step-size affects directly the real value of a gene, the DNA is a discrete representation, so the mutation step-size cannot have a direct affect on its values, but instead it affects the probability of mutation.
 
 - **Compare the different self-adaptation strategies explored in this exercise. In what ways are certain strategies better than others for optimization? In what ways are certain strategies more biologically plausible than others?** \
-TODO
+In general, individual step-sizes (ES or CMA-ES) seems to a better choice for optimization, since the algorithm is able to redirect the mutations towards a local minima, wasting less time performing mutations that do not bring any additional benefit. In the case of biological organism, a self-adaptive strategy with a single global mutation step-size seems more plausible, in particular for the reason stated in the previous question. Since the mutations are caused by an error during the DNA transcription, it is reasonable to think that the mutation rate is determined only by this component, independently from which portion of DNA is being transcribed, and therefore it can be seen as a form of global mutation step-size.
 
 - **Describe what reasons may contribute to better performance of CMA-ES and what can be the conditions when CMA-ES is not better than a basic ES.** \
 TODO

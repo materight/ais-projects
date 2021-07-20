@@ -70,9 +70,9 @@ def run(args, show=True):
     return {'best_fitness': best_fitness}
 
 results = run_benchmark(run, 'results/es1', args, {
-        'num_offspring': [100],
-        'mixing_number': [1, 2, 5],
-        'strategy_mode': [None, es.GLOBAL, es.INDIVIDUAL]
+        'num_offspring': [20, 40, 100], # lambda
+        'mixing_number': [1, 1, 2,2, 5,5], # rho
+        'strategy_mode': [None]
     }, 
     problems=[benchmarks.Rosenbrock], # benchmarks.Sphere, benchmarks.Rastrigin 
     combine=True)

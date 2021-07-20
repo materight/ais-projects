@@ -24,7 +24,7 @@ args["max_generations"] = 100
 args["sigma"] = 1.0 # default standard deviation
 
 args["pop_size"] = 20 #mu
-args["num_offspring"] = 100 #lambda
+args["num_offspring"] = 20 #lambda
 
 #args["problem_class"] = benchmarks.Sphere
 args["problem_class"] = benchmarks.Rosenbrock
@@ -61,10 +61,12 @@ def run(args, show=True):
 
     return {'best_fitness': best_fitness}
 
+#run(args)
+
 results = run_benchmark(run, 'results/es3', args, {
         'pop_size': [20],
-        'num_offspring': [100],
-        'num_vars': [10, 20]
+        'num_offspring': [20],
+        'num_vars': [10, 20, 30]
     }, 
     problems=[benchmarks.Rosenbrock, benchmarks.Sphere, benchmarks.Rastrigin],
-    combine=False)
+    combine=True)

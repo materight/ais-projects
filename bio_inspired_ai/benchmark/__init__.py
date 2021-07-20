@@ -24,6 +24,7 @@ def run_benchmark(run_function, output_path, initial_args, custom_args, problems
         args_array = [{**initial_args, arg: v} for arg, values in custom_args.items() for v in values]
 
     # Test arguments
+    print(list(custom_args.items()))
     for i, args in enumerate(tqdm(args_array)): 
         result = {}
         
