@@ -154,7 +154,7 @@ After some testing, the parameters that gives the best results across different 
 Yes, but it depends largely on the hyper-parameters used. For example, it seems that CMA-ES works better with a smaller value of λ, in particular when λ=μ the algorithm seems to converge very rapidly, for all the three problems. If instead  λ >> μ, for instance λ=200 and μ=100, the algorithm converges slower and needs more evaluations to obtain similar results. In this case, a strange behavior can be observed (see the image below), where there is an increase in the average fitness for a certain number of generations from the initial state, probably because a good covariance matrix to sample from may take a while before being discovered.
 
 <p align="center">
-    <img src="img/lab03_es3_1.png" alt="Fitness evaluation of CMA-ES" width="300"/>
+    <img src="img/lab03_es3_1.png" alt="Fitness evaluation of CMA-ES" width="500"/>
 </p>
 
 - **How do these differences change with different pop. sizes and problem dimensions?** \
