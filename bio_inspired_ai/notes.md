@@ -64,7 +64,7 @@ After some tests, we can summarize the results as obtained based on the paramete
 
 ### Questions
 - **What is the genotype and what is the phenotype in the problems considered in this lab?** \
-The *genotype* is the vector representations of the solution. The *phenotype* is the solution itself, with specific real values on the vector representation.
+The *genotype* is the vector representations of the solution, where each gene represents a value of one variable. The *phenotype* is the function used in the problem, with the values from the genotype assigned to its variables.
 
 - **What are the advantages and disadvantages of low/high mutation magnitudes in EAs?** \
 An higher mutation magnitudes value needs less generations to approach the minima, but if it's too high there is a risk of doing single steps that are too large and go beyond the optimum point. On the other hand, a low magnitude values may produce more accurate results, bu the convergence will be slower.
@@ -406,7 +406,7 @@ Yes, the results over 10 runs show that the algorithm with elitism is a better c
 
 ### Questions
 - **What is the genotype and what is the phenotype in the problems considered in this lab?** \
-In this case the genotype would be the network architecture, while the phenotype would be the network with weights and biases values.
+In the first two exercise, the genotype would be the vector representing each weight and bias values. In the last exercise (NEAT), the genotype encodes the weights but also the architecture of the network, in particular its synapses. In all the problem, the phenotype is the network instance, with the predefined or encoded topology and the encoded weights assigned to each synapse.
 
 - **Why are hidden nodes sometimes needed for a Neural Network to solve a given task? What is the defining feature of problems that networks without hidden nodes are unable to solve?** \
 Hidden nodes increase the representational power of a neural network. Each perceptron learns an hyperplane that separates the input space in two parts. Therefore, if our problem is linearly separable, a single perceptron is enough to solve it (e.g. and, or). However, with more complex problem a single perceptron may be not enough, since a single hyperplane is unable to divide a non-linear space. By implementing a Multi-Layer Perceptron these problems can be solved as well, since each layer will learn a new input representation, s.t. the last layer receive an input a linearly-separable input.
