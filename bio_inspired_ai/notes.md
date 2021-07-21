@@ -240,15 +240,15 @@ Some example of biological phenotypic traits that have an impact on the fitness 
 ## Lab. 05 - Constrained Problems
 
 ### Exercise 1
-- **How do your results change from the unconstrained version (from the previous lab)?** \
-With respect to the unconstrained solution, the range of the results is much narrower (see image below). In particular, the maximum stopping time (f1) is shorter from (~16 to ~11), and the maximum weight (f0) is lower (from ~2.2 to ~1.5). Moreover, the tradeoff between the two  metrics is less "steep", i.e. it's more difficult to identify an elbow in the trade-off between weight and stopping time w.r.t. the unconstrained version, and therefore it's more difficult to identify the "best" solutions with the best trade-off in the Pareto front.
+- **How do your results change from the unconstrained version (from the previous lab on the brake system)?** \
+With respect to the unconstrained solution, the range of the results is much narrower (see image below). In particular, the maximum stopping time (f1) is shorter (from ~16 to ~11), and the maximum weight (f0) is lower (from ~2.2 to ~1.5). Moreover, the tradeoff between the two  metrics is less "steep", i.e. it's more difficult to identify an elbow in the trade-off between weight and stopping time w.r.t. the unconstrained version, and therefore it's more difficult to identify the "best" solutions with the best trade-off in the Pareto front.
 
 <p align="center">
     <img src="img/lab05_es1_1.png" alt="Pareto front analysis" width="300"/>
 </p>
 
 - **Do your previous parameters continue to solve the problem?** \
-Yes, the parameters used for the unconstrained version (pop_size=20, max_gen=100) obtain better results than the default ones (pop_size=10, max_gen=10).
+Yes, the parameters used for the unconstrained version (pop_size=20, max_gen=100) obtained better results than the default ones (pop_size=10, max_gen=10).
 
 - **Try to increase the population size and/or the number of generations to see if you can find better solutions.** \
 By increasing the parameters values to pop_size=30 and max_gen=500 we obtain a larger choice of good solutions and the Pareto front become more visible. However, the solutions are not particularly better in terms of dominance with the previous ones. 
@@ -259,22 +259,22 @@ By increasing the parameters values to pop_size=30 and max_gen=500 we obtain a l
 
 ### Exercise 2
 - **Do you see any difference in the GA’s behavior (and results) when the penalty is enabled or disabled?** \
-When using the RosenbrockDisk problem class with penalties, the best fitness value obtain is usually an order of magnitude lower than the best fitness obtained by the version without penalties. However, the version without penalties is unable to find feasible solutions, as opposed to the penalized version. Moreover the solutions are less sparse w.r.t the version with penalties.
+When using the RosenbrockDisk problem class with penalties, the best fitness value obtained is usually an order of magnitude lager than the best fitness obtained by the version without penalties. However, the version without penalties is unable to find feasible solutions, as opposed to the penalized version. Moreover, the solutions are less sparse w.r.t the version with penalties.
 
 - **Try to modify the penalty functions used in the code of each benchmark function, and/or change the main parameters of the GA. Are you able to find the optimum on all the benchmark functions you tested?** \
-With RosenbrockDisk, by setting penalty function to `g(x, y) = x^2 + y^2 - 20` (instead of -2), we obtain a best fitness close to the unconstrained version, with a value (0.0004) an order of magnitude smaller than the one with the original penalty function (0.006). The best results are obtained by also changing the gaussian_stdev to 0.1 and the mutation_rate to 0.8, with a final best fitness of 0.0001.
+With RosenbrockDisk, by setting the penalty function to `g(x, y) = x^2 + y^2 - 20` (instead of -2), we obtain a best fitness close to the unconstrained version, with a value (0.0004), an order of magnitude smaller than the one obtained with the original penalty function (0.006). Better results are obtained by also changing the `gaussian_stdev` param to 0.1 and the `mutation_rate` to 0.8, with a final best fitness of 0.0001.
 
 - **Is the GA able to find the optimal solution lying on the unit circle (with the SphereCircle benchmark)?** \
-With the default values, no: the optimal solution (with a fitness of 2.02) lies outside the unit circle. The solution closest to the unit circle is obtained with pop_size=50 and gaussian_stdev=0.2, with a total penalty of 0.23. However, this solution is still unfeasible. By increasing the max_gen param to 400, we are able to obtain a solution very close to the unit circle, with a fitness of 1.03.
+With the default values, no: the best solution found (with a fitness of 2.02) lies outside the unit circle. The solution closest to the unit circle is obtained with `pop_size=50` and `gaussian_stdev=0.2`, with a total penalty of 0.23. However, this solution is still unfeasible. By increasing the max_gen param to 400, we are able to obtain a solution very close to the unit circle, with a fitness of 1.03.
 
 - **By default, the sphere function is defined in a domain [−5.12, 5.12] along each dimension. Try to increase the search space to progressively increasing boundaries. Is the GA still able to explore the feasible region and find the optimum?** \
 Yes, even by increasing the search space to [-10, 10] or [-20, 20], the results are exactly the same as the ones obtained with a domain of [−5.12, 5.12].
 
 - **If not, try to think of a way to guide the GA towards the feasible region. How could you change the penalty function to do so?** \
-I don't think it is possible to change the penalty function, since it is the penalty function that defines the constraint of having a solution in the unit circle.
+I don't think it is possible to change the penalty function, since it is the penalty function that defines the constraint of having a solution in the unit circle, and therefore by changing the penalty function g() we change the boundary of the unit circle.
 
 - **Try to modify the sphere function problem by adding one or more linear/non-linear constraints, and analyze how the optimum changes depending on the presence of constraints.** \
-By adding a constraint like `x < 1` (that becomes `0 < 1 - x`) and `y < 1`, we are able to obtain solutions that resides very close to the unit circle, i.e. with a fitness of 1.0008 (better then the previous fitness of 1.03). In this case, we use three constraints in total:
+By adding a constraint like `x < 1` (that becomes `x - 1 < 0`) and `y < 1`, we are able to obtain solutions that resides very close to the unit circle, i.e. with a fitness of 1.0008 (better then the previous fitness of 1.03). In this case, we use a total of three constraints:
 ```python
 f = x**2 + y**2
 # Constraints
@@ -289,10 +289,10 @@ if g3 > 0: f = f - g3
 
 ### Questions
 - **What do you think is the most efficient way to handle constraints in EAs?** \
-If we consider computational efficiency, the most efficient way of handling constraints in EAs is probably by penalty, since it does not require additional expensive computations than an unconstrained EA and it is easy to implement. We can also use all the existing EA algorithm by simply changing the fitness function.
+If we consider computational efficiency, the most efficient way of handling constraints in EAs is probably by penalty, since it does not require additional expensive computations w.r.t. an unconstrained EA and it is easy to implement. We can also use all the existing EA algorithm by simply changing the fitness function. Another computationally efficient approach is the death penalty, that however have several drawbacks (i.e. losing the information of unfeasible solutions and the possibility of killing the whole population), so it may be better to use the penalty function approach anyway.
 
 - **Do you think that the presence of constraints makes the search always more difficult? Can you think of cases in which the constraints could actually make the search easier?** \
-in general es, they make the search more difficult because they introduce additional factors that add complexity the objective's fitness landscape, therefore potentially reducing the convergency speed. However, if we have a clear idea of the kind of solution we want to obtain, we can exploit the constraints to direct the search process towards the wanted feasible space. In this case the constraints would be only a way to limit the search space, since they would increase/decrease the fitness according to previous knowledge we have about the problem. They would not be something that we need to trade-off with the actual fitness and that slow down the search space.
+In general they make the search more difficult because they introduce additional factors that add complexity to the objective's fitness landscape, therefore potentially reducing the convergency speed. However, if we have a clear idea of the kind of solution we want to obtain, we can exploit the constraints to direct the search process towards the wanted feasible space. In this case the constraints would be only a way to limit the search space, since they would increase/decrease the fitness according to previous knowledge we have about the problem. They would not be something that we need to trade-off with the actual fitness and that slow down the search in the solution space.
 
 
 
@@ -300,35 +300,35 @@ in general es, they make the search more difficult because they introduce additi
 
 ### Exercise 1
 - **What is the effect of each behavior coefficient?** \
-    - *Cohesion:* the magnitude of the movement component towards the center of mass of the swarm. A lower value of its coefficient translates into a more compact swarm, since the resulting vector to reach the center of mass is divided by this coefficient.
-    - *Alignment:* how much each boid will align according to its neighbors' alignments. Again, a larger value of its coefficient means a more chaotic swarm, since each boid will consider less important the current direction of its neighbors.
+    - *Cohesion:* the magnitude of the component of movement towards the center of mass of the swarm. A lower value of its coefficient translates into a more compact swarm, since the resulting vector used to go towards the center of mass is divided by this coefficient.
+    - *Alignment:* how much each boid will align according to its neighbors' alignments. Again, a larger value of its coefficient means a more chaotic swarm, since each boid will consider less importantly the current direction of its neighbors.
     - *Separation:* the minimum distance each boid has to maintain w.r.t. its neighbors. A lower value means a more compact swarm.
 
 - **Which combination of coefficients leads to the most “natural” flock behavior?** \
-In general, the best natural behavior is obtained with a large cohesion and small alignment and separation values. A small cohesion would make the boids go towards the center with too much velocity, creating a very fast and noisy swarm. Lower values for the alignment and separation keep the boids in the boids in an homogeneous direction and in a compact formation.
+In general, the best natural behavior is obtained with large cohesion and small alignment and separation values. A small cohesion would make the boids go towards the center with too much velocity, creating a very fast and noisy swarm. Lower values for the alignment and separation keep the boids in an homogeneous direction and in a compact formation.
 
 ### Exercise 2
 - **What kind of behavior does PSO have on different benchmark functions, in comparison with the EAs? Does it show better or worse results? Does it converge faster or not?** \
 In case of the sphere function, the best results are obtained by ES, which also converge faster then GA and PSO. \
 In case of the Rosenbrock function instead, PSO converges faster, but the best results are still obtained by ES. \
 In case of multimodal functions, Rastrigin in particular, we still have that ES obtains better results and convergence speed. \
-With the Griewank function instead, PSO obtain the best solution and converge sooner than ES and GA.
+With the Griewank function instead, PSO obtains the best solution and converge sooner than ES and GA.
 
 - **Increase the problem dimensionality to 10 or more. What do you observe in this case?** \
 With the Sphere function and a dimensionality of 10, ES obtains again the best results. However, PSO converges faster than ES, while with a dimensionality of 2 ES was faster. If we keep increasing the dimensionality, to 20 or 50, GA starts to obtain better results than PSO and ES, with faster convergence and far better fitnesses, while PSO obtain the worst performance. \
 The same results are obtained also with multimodal functions: after a certain number of dimensions, GA obtains the best results w.r.t. ES and PSO.
 
 - **Change the population size and the number of generations, such that their product is fixed (e.g. 50 × 100, 100 × 100, etc.). Try two or three different combinations and observe the behavior of the three different algorithms. What do you observe in this case? Is it better to have smaller/larger populations or a smaller/larger number of generations? Why?** \
-With unimodal functions, in general it seems to be better to have a small population with a large number of generations. By trying different combinations (i.e. (pop=10, gen=500 (pop=50, gen=100), (100, 50), (500, 10)), we can observe that the best results are obtained, with all three approaches (GA, ES, PSO), with pop_size=10 and max_generations=500. This is probably because we have just one global minimum, so it is not very important to have a greater variability in the population since it cannot end up stuck in a local minimum. Therefore with a larger number of generations the algorithms have more time to improve the results. \
-The same results are not obtained with multimodal functions, where the best fitnesses are achieved with pop_size=50 and max_generations=100, for the same reason explained before. 
+With unimodal functions, in general it seems to be better to have a small population with a large number of generations. By trying different combinations (i.e. (pop=10, gen=500) (50, 100), (100, 50), (500, 10)), we can observe that the best results are obtained, with all three approaches (GA, ES, PSO), with pop_size=10 and max_generations=500. This is probably because we have just one global minimum, so it is not very important to have a greater variability in the population since it cannot end up stuck in a local optimum. Therefore with a larger number of generations the algorithms have more time to improve the results and increase exploitation. \
+The same results are not obtained with multimodal functions, where the best fitnesses are achieved with pop_size=50 and max_generations=100, probably for the same reasons explained before. 
 
 ### Questions
 - **When do you think it is useful to have a lower (higher) cognitive learning rate? What about the social learning rate?** \
 An higher cognitive learning rate may be better when dealing with multimodal functions, since it favor exploration by giving more importance to the previous best values obtained by the individual. \
-An higher social learning rate instead may be better with unimodal functions, since each individual will move more towards the current best neighbor, which is probably nearer the actual optima.
+An higher social learning rate instead may be better with unimodal functions, since each individual will move more towards the current best neighbor, which is probably nearer the actual optima, favoring exploitation.
 
 - **From a biological point of view, which neighborhood topology do you consider as the most plausible?** \
-The distance-based topology seems to be most plausible if we consider the actual behavior of a swarm, since each individual can only see the neighbors in his field of view.
+The distance-based topology seems to be most plausible if we consider the actual behavior of a swarm, since each individual can only see the neighbors in his field-of-view.
 
 
 
@@ -340,21 +340,21 @@ In all the three instances of the problem, the best solution was always obtained
 
 ### Exercise 2 (0/1 Knapsack)
 - **Which algorithm provides the best solution in most cases? What can you say about the number of function evaluations needed to converge?** \
-For most of the problem instances, EA and ACS obtained the more or less the same results, without any particular difference in the convergence speed (if we consider only the best solution found in  each evaluation). However, for the last problem instance, were we have a much larger capacity, ACS were able to find a significant better solution than EA (13.5M vs 13.2M). This could also be caused by the slower convergence speed of the EA algorithm, and therefore ACS may be the best choice when dealing with large-scale problems. 
+For most of the problem instances, EA and ACS obtained more or less the same results, without any particular difference in the convergence speed (if we consider the best fitness value of each evaluation). However, for the last problem instance, were we have a much larger capacity, ACS were able to find a significant better solution than EA (13.5M vs 13.2M). This could also be caused by the slower convergence speed of the EA algorithm, and therefore ACS may be the best choice when dealing with large-scale problems. 
 
 ### Exercise 3 (Knapsack with duplicates)
 - **Which algorithm provides the best solution in most cases? What can you say about the number of function evaluations needed to converge?** \
 With this problem ACS obtains again better results. Similar to exercise 1, also in this case ACS has a faster convergence speed: for example, in problem instance 05, ACS converges to the best solution (fitness 1410) almost immediately (~10 evaluations), while EA requires ~200 evaluations to converge to a fitness of only 906. The same behavior can be observed in most of the problem instances.
 
 - **Do you observe any difference on the algorithmic behavior between this exercise and the previous one?** \
-Yes, in particular the performance of ACS and EA were quite similar in the case 0f 0/1 Knapsack, if we do not consider the large case, while in the case of Knapsack with duplicates the results were quite different, with ACS performing better.
+Yes, in particular the performance of ACS and EA were quite similar in the case of 0/1 Knapsack, if we do not consider the large-scale case, while in the case of Knapsack with duplicates the results were quite different, with ACS performing better. Maybe this is caused by the fact that the Knapsack with duplicates problem has a larger search space w.r.t the 0/1 version, since more combinations of items are possible as solutions.
 
 ### Questions
 - **What are the main differences between continuous and discrete optimization problems? Do you think that any of these two classes of problems is more difficult than the other?** \
 The main difference between continuous and discrete optimization problems is that the latter has additional intrinsic constraints given by the fact that only a certain set of values (or choices) can be accepted as a valid solution. In the case of continuous problems instead every point in the fitness landscape is a valid solution (if we assume a generic optimization problem, with no additional constraints). Therefore, we may consider discrete optimization problems more difficult to solve.
 
 - **Why is ACS particularly suited for discrete optimization?** \
-Because by default ACS already encodes the intrinsic constraints of a discrete problem using the graph representation, i.e. the graph's edges can be seen ad a representation of the discrete constraints. The search process is therefore focused only on exploring valid solutions, allowing for a faster convergence speed, as seen in the previous problems.
+Because by default ACS already encodes the intrinsic constraints of a discrete problem using the graph representation, i.e. the graph's edges can be seen as a representation of the discrete constraints. The search process is therefore focused only on exploring valid solutions, allowing for a faster convergence speed, as seen in the previous problems.
 
 - **Consider the two versions of the Knapsack problem (0/1, and with duplicates). Which of the two problems is more challenging from an optimization point of view? Why?** \
 The Knapsack with duplicates is probably the most challenging to solve, since the solution space is much larger. With the 0/1 instance the set of possible solutions (considering also non-valid solutions) is given by the set of all subsets of the items, i.e. 2^N possible solutions. Instead, with the variation with duplicates, for each possible subset of items we also have to consider each possible combination of times each item is picked, making the solution space very large.
