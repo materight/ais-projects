@@ -99,7 +99,7 @@ A tournament size of 2 gave better results (52,11) than a size of 2 (78.59). Thi
 In general, the same parameter values can obtain very different results on different problems.
 
 - **What is the effect of changing the number of variables on each tested function?** \
-An higher number of variables drastically decrease the performance of the EA, in every tested function. This is caused by the "curse of dimensionality" since more variables mean a larger space to explore.
+An higher number of variables drastically decrease the performance of the EA, in every tested function. This is caused by the "curse of dimensionality" since more variables means a larger space to explore.
 
 ### Questions
 - **Why is it useful to introduce crossover in EA? Can you think of any cases when mutation-only can work effectively, without crossover? What about using crossover only, without mutation?** \
@@ -162,7 +162,7 @@ Some considerations are already stated in the previous answer. Regarding the pop
 
 ### Questions
 - **Do the observations you made while varying μ, ρ, and λ confirm or contradict the conclusions you drew last week?** \
-TODO
+In general they are confirmed, even if the behavior of ES w.r.t. a simple GA is different, and therefore there are some differences. For instance, with ES it seems that having a lower number of generated offspring is beneficial for some problems, since if the fitness landscape it simple and easy to navigate (e.g. with the Rosenbrock function) having a large number of generated offspring (improving exploration) is only wasting computational resources, that instead could be used to further improve already good solutions (improving exploitation).
 
 - **What are the advantages of self-adaptation in evolutionary computation?** \
 The main advantage is that self-adaptation is that we don't need to manually select a value for the mutation step-sizes, but the best values are automatically discovered. Moreover, it is beneficial to have different mutation step-sizes at different steps of the evolution process, both in terms of number of generations and distance from the local minima: it improves exploitation at later stages and when in a good region of the search space.
@@ -174,7 +174,8 @@ If an organism find itself in a unfavorable environment, a higher mutation rate 
 In general, individual step-sizes (ES or CMA-ES) seems to a better choice for optimization, since the algorithm is able to redirect the mutations towards a local minima, wasting less time performing mutations that do not bring any additional benefit. In the case of biological organism, a self-adaptive strategy with a single global mutation step-size seems more plausible, in particular for the reason stated in the previous question. Since the mutations are caused by an error during the DNA transcription, it is reasonable to think that the mutation rate is determined only by this component, independently from which portion of DNA is being transcribed, and therefore it can be seen as a form of global mutation step-size.
 
 - **Describe what reasons may contribute to better performance of CMA-ES and what can be the conditions when CMA-ES is not better than a basic ES.** \
-TODO
+CMA-ES may perform better than other algorithms because it is based on the evolution path of the search process, and therefore it is able to automatically determine the best shape and rotation of the mutations for the current step of the search. Moreover, since it performs a kind of PCA on the mutations step-sizes, it is able to avoid making mutations on the features that do not bring any significant improvement to the fitness value. \
+CMA-ES may not be better than a basic ES for instance when for instance we have a very rough fitness landscape, and therefore having different mutation covariance matrices for each individual could be beneficial to increase exploration w.r.t. having a single global covariance matrix.
 
 
 
