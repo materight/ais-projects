@@ -35,7 +35,7 @@ args["max_generations"] = 100
 
 # make sure that this array has the same size as num_objs
 #args["fitness_weights"] = [0.5, 0.5]
-args["fitness_weights"] = [0.0, 1]
+args["fitness_weights"] = [1, 1]
 
 #problem = benchmarks.Kursawe(num_vars) # set num_vars = 3
 problem = benchmarks.DTLZ7(num_vars, num_objs) # set num_objs = 3 and num_vars = 19+num_objs

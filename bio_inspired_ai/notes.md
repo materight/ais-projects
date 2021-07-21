@@ -25,20 +25,20 @@
 
 ### Exercise 1
 - **Do the mutations tend to improve or worsen the fitness of the parent?** \
-In general the mutations do not produce any particular worsening or improvement in the fitness of the parent: since they are random mutations, they can either go toward or away from the minimum. 
+In general, a single mutation does not produce any particular worsening or improvement in the fitness of the parent: since it's a random mutation, it can either go towards or away from the minimum. 
 
 - **Are low or high mutation magnitudes best for improving the fitness? How does this depend on the initial value of the parent and on the number of dimensions of the search space?** \
-In this case, higher mutations magnitudes have a better change of producing a better offspring. Since we are running the mutation on just one iteration, the magnitude represent the maximum "range of motion" from the parent when searching a new solution. However, if the order of magnitude is too high, the new solutions will be more scattered and the change of having an optimum solution will be lower. Therefore, the magnitude should be proportional to the initial parent distance form the optimum.
+In this case, higher mutations magnitudes have a better chance of producing a better offspring. Since we are running the mutation on just one iteration, the magnitude represent the maximum "range of motion" from the parent when searching a new solution. However, if the order of magnitude is too high, the new solutions will be more scattered and the chance of obtaining an optimum solution will be lower. Therefore, the magnitude should be proportional to the initial parent distance form the optimum.
 
 ### Exercise 2
 - **Compare different values for the number of dimensions of the search space.** \
-In general, an higher number of dimensions corresponds to an overall higher fitness (worse), since the number of feature with potential error is larger and we are not normalizing the fitness over the number of dimensions.
+In general, an higher number of dimensions corresponds to an overall higher (worse) fitness, since the number of features with a potential "bad" value is larger and we are not normalizing the fitness over the number of dimensions.
 
 - **Compare different values for the value of the parent (how close it is to the optimum).** \
-With lower initial parent values, the offspring solutions have more change of being near the optimum, and therefore the overall fitness is lower (better).
+With lower initial parent values, the offspring solutions have more chance of being near the optimum, and therefore the overall fitness is lower (better).
 
 - **Compare different values for the mutation magnitude σ.** \
-With higher magnitude values, the maximum deviation obtainable from the initial parent solution is higher. Therefore, if the initial distance of the parent from the optimum is large, the offspring have better change of be near the optimum (zero). Otherwise, if the initial parent values are near the optimum, there is an higher chance of "overshooting" the minimum and skipping it, producing a more scattered offspring with more solutions that are distant from the zero, while the solutions obtained with a lower mutation magnitude would have been less scattered and better overall.
+With higher magnitude values, the maximum deviation obtainable from the initial parent solution with a mutation is higher. Therefore, if the initial distance of the parent from the optimum is large, the offspring have a better chance of ending up near the optimum (zero). Otherwise, if the initial parent values are near the optimum, there is an higher chance of "overshooting" the minimum and skipping it, producing more scattered offsprings with more solutions that are distant from the zero, while the solutions obtained with a lower mutation magnitude would have been less scattered and better overall.
 
 ### Exercise 3
 - **How close is the best individual from the global optimum?** \
@@ -60,17 +60,17 @@ After some tests, we can summarize the results as obtained based on the paramete
 
     Therefore we can say that:
     - The *mutation magnitude σ* drives the convergence speed. An higher value needs less generations to approach the minima, but if it's too high there is a risk of doing single steps that are too large and go beyond the optimum point.
-    - The *number of generations* drives the final result distance. More generations can produce a better result, but the algorithm is more computationally expensive.
+    - The *number of generations* drives the final result's distance from the optimum. More generations can produce a better result, but the algorithm is more computationally expensive.
 
 ### Questions
 - **What is the genotype and what is the phenotype in the problems considered in this lab?** \
 The *genotype* is the vector representations of the solution, where each gene represents a value of one variable. The *phenotype* is the function used in the problem, with the values from the genotype assigned to its variables.
 
 - **What are the advantages and disadvantages of low/high mutation magnitudes in EAs?** \
-An higher mutation magnitudes value needs less generations to approach the minima, but if it's too high there is a risk of doing single steps that are too large and go beyond the optimum point. On the other hand, a low magnitude values may produce more accurate results, bu the convergence will be slower.
+An higher mutation magnitudes value needs less generations to approach the minima, but if it's too high there is a risk of doing single steps that are too large and go beyond the optimum point. On the other hand, a low magnitude values may produce more accurate results, but the convergence speed will be slower.
 
 - **Based on the previous observations, do you think there is an optimal mutation magnitude for a biological organism? Do mutations typically improve or worsen the fitness of a biological organism? In which situations do you think low/high mutation rates are advantageous for a population of bacteria?** \
-I think that in the particular case of biological organisms the mutations usually have no noticeable effect on the fitness of the organism. In the case of a bacteria population, a higher mutation rate may be advantageous in extreme environments, where the living conditions can change rapidly and an high adaptability can be determinant for survival.
+I think that in the particular case of biological organisms the mutations usually have no noticeable effect on the fitness of the organism. In some rare cases however they might have a noticeable effect, that would probably be detrimental, since a mutation that produces a benefit for the individual are probably even rarer. In the case of a bacteria population, a higher mutation rate may be advantageous in extreme environments, where the living conditions can change rapidly and an high adaptability can be determinant for survival.
 
 
 
@@ -83,30 +83,30 @@ The mutation-only EA obtained a better score than the crossover-only EA. This is
 ### Exercise 2
 - **Is there an optimal crossover fraction for this fitness function? Why?** \
 After some tests, we can observe that in general, with a crossover rate of:
-    - *0%* we obtain a large variability in the results, but the fitness is overall higher (worse) than the other crossover rates, the same for the best individual's fitness. This correspond to a mutation-only EA.
+    - *0%* we obtain a large variability in the results, but the fitness is overall higher (worse) than the other crossover rates, the same for the best individual's fitness. This corresponds to a mutation-only EA.
     - *25%-50%-75%* we obtain very little changes in the results, considering both the average and best fitnesses. This can variate from execution to execution.
-    - *100%* we obtain the best results, with the best fitness. The average is fitness of the final population is also lower.
+    - *100%* we obtain the best results, with the best fitness. The average fitness of the final population is also lower.
 
 ### Exercise 3
 - **Which tournament size gives better results for the fitness function Sphere and why?** \
-A tournament size of 10 gave better results (0.02) than a size of 2 (0.27). This is probably because the pressure selection is higher, since if used a group size of 2, we would have 25/2=~12 groups, and therefore 12 best individuals would be selected. Instead, with a tournament size of 10, we have 25/10=~2 groups, and 2 best individuals are selected. Therefore, the convergence is faster since we have only 1 global optima and we consider at each generation only the best 2 individuals.
+A tournament size of 10 gave better results (0.02) than a size of 2 (0.27). This is probably because the pressure selection is higher, since if we used a group size of 2, we would have selected the best individuals among only 2 randomly selected solutions. Instead, with a tournament size of 10, we are selecting the parents from a pool of 10 random solution. Therefore, the convergence is faster since we have only 1 global optima and at each generation it is more probable to select the best individuals as parents, preferring exploitation over exploration.
 
 - **Which tournament size gives better results for the fitness function Rastrigin and why?** \
-A tournament size of 2 gave better results (52,11) than a size of 2 (78.59). This is probably because the pressure selection is lower, and since we don't have just one global minimum (as the Sphere function) but many local minimum, a lower selection pressure gives a better coverage of the fitness landscape. Therefore, by using a lower tournament size we are avoiding to concentrate on few local minimums and we are instead exploring more the landscape.
+A tournament size of 2 gave better results (52,11) than a size of 10 (78.59). This is probably because the pressure selection is lower, and since we don't have just one global minimum (as seen before with the Sphere function) but many local minimum, a lower selection pressure gives a better coverage of the fitness landscape, increasing exploration. Therefore, by using a lower tournament size we are avoiding to concentrate on few local minimums and we are instead exploring more the landscape.
 
 ### Exercise 4
 - **Do you see a different algorithmic behavior when you test the EA on different benchmark functions? Why?** \
-In general, the same parameter values can obtain very different results on different problems.
+In general, the same parameter values can obtain very different results on different problems. This depends on the algorithm initialization and on the stochastic components of evolution.
 
 - **What is the effect of changing the number of variables on each tested function?** \
-An higher number of variables drastically decrease the performance of the EA, in every tested function. This is caused by the "curse of dimensionality" since more variables means a larger space to explore.
+An higher number of variables drastically decrease the performance of the EA, in every tested function. This is caused by the "curse of dimensionality" since more variables means a larger space to explore, for which is more difficult to find good solutions.
 
 ### Questions
 - **Why is it useful to introduce crossover in EA? Can you think of any cases when mutation-only can work effectively, without crossover? What about using crossover only, without mutation?** \
-Crossover can be useful to exploit the synergy between good solutions, with the hope of obtaining a better solution. Mutation-only can work effectively for example when the fitness landscape has just one global optimum. However it is prone to lose the information acquired in good solutions. Crossover-only is usually not that useful, since it does not introduce any new information in the solution.
+Crossover can be useful to exploit the synergy between good solutions, with the hope of obtaining a better solution. Mutation-only can work effectively for example when the fitness landscape has just one global optimum. However it is prone to lose the information acquired in good solutions. Crossover-only is usually not that useful, since it does not introduce any new information (genetic material) in the population.
 
 - **What’s the effect of changing the fraction of offspring created by crossover?** \
-By changing the fraction of offspring created by crossover, we generally increase the convergence speed.
+By increasing the fraction of offspring created by crossover, we generally increase the convergence speed, since we are generating more individuals at each generation and therefore we increase the chance of generating good solutions.
 
 - **Are there optimal parameters for an EA?** \
 No, at least not "global optimal parameters" that works well for every problem, since the performance obtained by a set of parameters strictly depend on the type of the problem, in particular on the fitness function we want to optimize.
@@ -120,7 +120,7 @@ An high selection pressure can obtain a faster convergence, since we exploit onl
 
 ### Exercise 1
 - **What happens if you make λ smaller e.g. λ = μ?** \
-By decreasing λ (and maintaining the number of evaluations constant by increasing the "max_generations" param accordingly) we obtain a faster convergence speed, while the results in the long run remain quite stable across the different values of λ. This is probably because we are favoring exploitation against exploration, and the problem has a single optima, even if it's represented by a valley.
+By decreasing λ (and maintaining the number of evaluations constant by increasing the "max_generations" param accordingly) we obtain a faster convergence speed, while the results in the long run remain quite stable across different values of λ. This is probably because we are favoring exploitation against exploration, and the problem has a single optima (even if it's represented by a valley in the Rosenbrock function).
 
 - **What happens if you increase the mixing number ρ?** \
 By increasing the mixing number ρ, the overall fitness is better (lower) and the convergence speed is much faster. This is probably because we are using more parents for creating new individuals, increasing the variability of the generated offspring. However, it must be noted that the results greatly vary between different runs: for instance, by setting ρ=2 and λ=100 the algorithm achieved a minimum best fitness value of 69.61 and a maximum value of 241.67.
@@ -183,10 +183,10 @@ CMA-ES may not be better than a basic ES for instance when for instance we have 
 
 ### Exercise 1 (Scalarization)
 - **What happens when you run the GA with this fitness function (Kursawe)?** \
-The GA try to find a solution that go towards the minimum on both objectives. In particular, with both weights set to 0.5, we can clearly see that the GA algorithm find solution that are very close to one of the local minimums of the second objective, in particular to the local minimum that is closer to the global minimum of the first objective.
+The GA try to find a solution that go towards the minimum on both objectives. In particular, with both weights set to 0.5, we can clearly see that the GA algorithm find solutions that are very close to one of the local minimums of the second objective, in particular to the local minimum that is closer to the global minimum of the first objective.
 
 - **Why do you obtain this result?** \
-This is because both objectives are given the same importance. However, since the fitness values of the second objective are much larger outside the local minimum, the GA try to first find solutions that are in that minimum. Therefore the final population displacement resemble a cross, similar to the landscape of the second objective function. Between all the local minimum however, the GA select the one nearer to the global minimum of the second objective.
+This is because both objectives are given the same importance. However, since the fitness values of the second objective are much larger outside the local minimum, the GA try to first find solutions that are in that minimum. Therefore the final population displacement resemble a cross, similar to the landscape of the second objective function. Between all the local minimum however, the GA select the one nearer to the global minimum of the second objective function.
 
 - **What happens if you give the first (or second) objective all of the weight?** \
 By giving all the weights to the first objective, the GA find a best solution only for that objective, therefore we obtain a population centered on its global minimum. The same result is obtained if we assign all the weights to the second objective, with the GA minimizing only that function.
@@ -195,20 +195,20 @@ By giving all the weights to the first objective, the GA find a best solution on
 By setting the weights to `[0.7, 0.3]` we find a good compromise between the fitness on the two objectives, i.e. we obtain a fitness of -6.79 for the first and -6.82 for the second.
 
 - **Does your weighting still work on the new problem (DTLZ7)?** \
-If we use DTLZ7 with `num_obj = 2` and weights `[0.7, 0.3]` we obtain a fitness of 0 for the first objective and 4.0 for the second objective. However, if we change the weights to `[0.55, 0.45]`, we obtain finesses of 0.85 and 2.86 respectively, a solution that may preferable based on the context.
+If we use DTLZ7 with `num_obj = 2` and weights `[0.7, 0.3]` we obtain a fitness of 0 for the first objective and 4.0 for the second objective. However, if we change the weights to `[0.55, 0.45]`, we obtain best finesses of 0.85 and 2.86 respectively, a solution that may preferable based on the context.
 
 - **Can you think of a method for combining the objectives that might work better than using a weighted sum?** \
-In the case of DTLZ7, if we want to obtain a better fitness on the second objective, we may want to compute the total fitness as a non-linear combination of the fitnesses, e.g. f = f1^0.5 + f2^2
+In the case of DTLZ7, if we want to obtain a better fitness on the second objective, we may want to compute the total fitness as a non-linear combination of the fitnesses, e.g. with `f = f1^0.5 + f2^2` the algorithm obtained a best fitness of 0.81 and 2.46.
 
 ### Exercise 2 (NSGA-2)
 - **How do the solutions you find here compare to those found in Exercise 1?** \
-In the case of Kursawe, the results found in the previous exercise, in particular with weights `[0.7, 0.3]`, could still be considered "acceptable" since they will still belong to the Pareto front.
+In the case of Kursawe, the results found in the previous exercise, in particular with weights `[0.7, 0.3]`, could still be considered "acceptable" since they will still belong to the Pareto front considering the solutions found by NSGA-2.
 
 - **Is there a single solution that is clearly the best?** \
-No, since the final Pareto front includes all the solutions that are incomparable with each others, i.e. they are all non-dominated. For this reason, there is no single best solution that is clearly best than the others
+No, since the final Pareto front includes all the solutions that are incomparable with each others, i.e. they are all non-dominated. For this reason, there is no single best solution that is clearly better than the others.
 
 - **Can you still find good solutions (with DTLZ7)?** \
-Yes, the found solutions are still good compared to the ones found in Exercise 1 (still considering num_obj=2 and num_vars=21), i.e. the solution found before could still be part of the Pareto front.
+Yes, the solutions found are still good compared to the ones found in Exercise 1 (still considering num_obj=2 and num_vars=21), i.e. the solution found before could still be part of the Pareto front.
 
 - **What happens if you increase the population size or the number of generations?** \
 By increasing the population size (e.g. from 50 to 200), we obtain more solutions on the Pareto front, but the total coverage of the Pareto front remains the same, with more crowded areas. \
@@ -233,7 +233,7 @@ When there is a clear relation between the objectives that we want to optimize, 
 It can be useful to understand what kind of trade-off between the objectives we have to deal with in our problem, in order to also have a realistic idea of what are the maximum performance we can achieve in the ideal case.
 
 - **In biological evolution it is possible to think of many phenotypic traits that contribute to the ultimate fitness of an organism (try to enumerate some of these). What (if any) relevance do multi-objective evolutionary algorithms have to biology?** \
-Some example of biological phenotypic traits that have an impact on the fitness of an organism include height, wing length, eyesight, and any other characteristic that ultimately give an advantage over the other organisms. In biology, evolution is probably driven by different objectives that can compete with each other, like in a multi-objective EA. For instance, having larger wings may increase the overall stamina and speed of a bird, at the expense of being more easily identifiable by a prey.
+Some example of biological phenotypic traits that have an impact on the fitness of an organism include height, wing length, eyesight, and any other characteristic that ultimately give an advantage over the other organisms. In biology, evolution is probably driven by different objectives that compete with each other, like in a multi-objective EA. For instance, having larger wings may increase the overall stamina and speed of a bird, at the expense of being more easily identifiable by a prey.
 
 
 
