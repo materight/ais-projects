@@ -5,7 +5,7 @@
 ### Mandatory Sections:
  - Introduction
  - Conversational design
- - Data description (with analyis)
+ - Data description (with analysis)
  - Conversation model (e.g. Rasa, Response selection/generation, integration with Alexa/Google)
  - Evaluation:
     - internal
@@ -27,4 +27,4 @@
 
 ## Data augmentation:
  - Chatette (Python lib for sentence generation)
- - 
+ - Rasa X (share agents with others, create test set, annotate NLU data, filter conversation by the ones that triggered the fallback)
