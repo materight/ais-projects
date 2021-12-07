@@ -1,0 +1,146 @@
+[
+  {
+    "text": "how are you doing",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.1955020209528619
+    }
+  },
+  {
+    "text": "works for me",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.2622653371324685
+    }
+  },
+  {
+    "text": "good for me",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.31460895102244546
+    }
+  },
+  {
+    "text": "yes happy to help",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.2697296502380947
+    }
+  },
+  {
+    "text": "yes please",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.3250004228832294
+    }
+  },
+  {
+    "text": "negative",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.30785053457874784
+    }
+  },
+  {
+    "text": "not today",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.2564388662499127
+    }
+  },
+  {
+    "text": "no thanks",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.2269766564338345
+    }
+  },
+  {
+    "text": "I had a great weekend",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.36124811214293917
+    }
+  },
+  {
+    "text": "I'm happy",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.48557604287408773
+    }
+  },
+  {
+    "text": "I'm pretty happy",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.47986423987067384
+    }
+  },
+  {
+    "text": "good for now thank you",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.3013755628958239
+    }
+  },
+  {
+    "text": "thrilled",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.22074982071500832
+    }
+  },
+  {
+    "text": "i just want that this day ends",
+    "intent": "mood_unhappy",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.2434636641828944
+    }
+  },
+  {
+    "text": "please don't ask me that question",
+    "intent": "mood_unhappy",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.25292650333199385
+    }
+  },
+  {
+    "text": "are you a machine?",
+    "intent": "bot_challenge",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.25806770318578576
+    }
+  },
+  {
+    "text": "do you understand me?",
+    "intent": "bot_challenge",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.2524781870323911
+    }
+  },
+  {
+    "text": "who am i talking to?",
+    "intent": "bot_challenge",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.20511067776450487
+    }
+  }
+]
