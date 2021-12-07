@@ -1,0 +1,45 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "entities": [
+          {
+            "end": 31,
+            "entity": "toilet",
+            "start": 28,
+            "value": "loo"
+          }
+        ],
+        "intent": "ask_toilet",
+        "text": "Excuse me tell me where the loo is?"
+      },
+      {
+        "entities": [
+          {
+            "end": 42,
+            "entity": "toilet",
+            "start": 36,
+            "value": "toilet"
+          }
+        ],
+        "intent": "ask_toilet",
+        "text": "excuse me can you show me where the toilet is please?"
+      },
+      {
+        "entities": [
+          {
+            "end": 41,
+            "entity": "toilet",
+            "start": 34,
+            "value": "toilets"
+          }
+        ],
+        "intent": "ask_toilet",
+        "text": "sorry could you show me where the toilets are?"
+      }
+    ],
+    "entity_synonyms": [],
+    "lookup_tables": [],
+    "regex_features": []
+  }
+}
